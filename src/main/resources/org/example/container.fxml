@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="bp" minWidth="0.0" prefHeight="900.0" prefWidth="1421.0" style="-fx-pref-width: 1200; -fx-pref-height: 600;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ViewContainerController">
+   <left>
+      <VBox fx:id="navVbox" prefHeight="365.0" prefWidth="273.0" style="-fx-background-color: #24292e;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style,btn-nav-style-selected" text="Home" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Camera" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Sample3" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Parking lot" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Member" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="History" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Settings" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Users" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Price" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="35.0" style="-fx-background-color: #24292e;" BorderPane.alignment="CENTER">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="100.0" prefWidth="392.0" style="-fx-text-fill: white; -fx-padding: 0 0 0 10; -fx-font-size: 15;" styleClass="title-bar" text="Label" HBox.hgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 5 15; -fx-font-size: 20; -fx-border-style: none;" text="X" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <AnchorPane id="main" fx:id="ap" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <stylesheets>
+      <URL value="@../../../../../../../../IdeaProjects/NewProj/src/sample/view/css/style.css" />
+   </stylesheets>
+</BorderPane>

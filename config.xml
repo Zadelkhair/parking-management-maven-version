@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Configuration</comment>
+
+    <entry key="application_name">NewProj</entry>
+
+    <!-- Database configuration -->
+    <entry key="DB_URL">jdbc:mysql://127.0.0.1</entry>
+    <entry key="DB_NAME">gestion_parking_db</entry>
+    <entry key="DB_USER">zad</entry>
+    <entry key="DB_PASSWORD">zad</entry>
+    <!---->
+
+</properties>

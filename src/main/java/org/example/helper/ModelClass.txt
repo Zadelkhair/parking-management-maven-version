@@ -1,0 +1,56 @@
+package sample.$_packageName_$;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class $_modelName_$ extends Model {
+
+    //table name
+    public String tableName() {
+        return "$_tableName_$";
+    }
+
+    //felds
+$_fieldsDeclaration_$
+
+    //Constructors
+    public $_modelName_$(){}
+
+    public $_modelName_$(int id,$_fieldsParams_$) {
+        this.id = id;
+$_fieldsInit_$
+    }
+
+    //Geter and seters
+$_fieldsGettersAndSetters_$
+
+    //
+    @Override
+    public boolean readRow(Map<String, Object> row) {
+
+        this.id = (int) row.get("id");
+$_fieldsFromRow_$
+
+        return true;
+    }
+
+    @Override
+    public Map<String,Object> toRow() {
+
+        Map<String,Object> row = new HashMap<>();
+$_fieldsToRow_$
+
+        return row;
+    }
+
+    @Override
+    public Model getInstance() {
+        return new $_modelName_$();
+    }
+
+    //Custom methods
+
+}
