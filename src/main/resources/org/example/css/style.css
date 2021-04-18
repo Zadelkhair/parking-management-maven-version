@@ -41,3 +41,7 @@
 .btn-settings:hover{
 -fx-underline:true;-fx-cursor: hand;
 }
+
+.section-title{
+-fx-border-style: solid;-fx-border-width: 1 0 0 0;
+}

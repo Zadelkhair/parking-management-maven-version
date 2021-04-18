@@ -57,7 +57,7 @@ public class ViewContainerController extends MainView implements Initializable {
 //                App.viewController.navigateTo("primary.fxml",btn);
                 return;
             case "Reservation":
-//                App.viewController.navigateTo("parkinLot.fxml",btn);
+                App.viewController.navigateTo("reservation_step1.fxml",btn);
                 return;
             case "Camera":
 //                App.viewController.navigateTo("Simple3.fxml",btn);

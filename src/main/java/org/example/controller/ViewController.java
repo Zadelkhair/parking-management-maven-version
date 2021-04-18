@@ -11,6 +11,7 @@ import org.example.App;
 import org.example.MainView;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class ViewController implements IViewController {
 
@@ -36,6 +37,14 @@ public class ViewController implements IViewController {
             return;
 
         mainView.navigateTo(viewUrl, btnToSelect);
+    }
+
+    public void navigateTo(String viewUrl, ButtonBase btnToSelect, Map<String,Object> data) {
+
+        if (mainView == null)
+            return;
+
+        mainView.navigateTo(viewUrl, btnToSelect , data);
     }
 
     @Override
