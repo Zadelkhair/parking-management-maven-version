@@ -12,15 +12,13 @@
    <left>
       <VBox fx:id="navVbox" prefHeight="365.0" prefWidth="273.0" style="-fx-background-color: #24292e;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style,btn-nav-style-selected" text="Home" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Camera" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Sample3" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Parking lot" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Member" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="History" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Settings" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Users" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Price" />
+            <Button fx:id="btn_home" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style,btn-nav-style-selected" text="Home" />
+            <Button fx:id="btn_reservation" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Reservation" />
+            <Button fx:id="btn_camera" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Camera" />
+            <Button fx:id="btn_parking_lot" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Parking lot" />
+            <Button fx:id="btn_member" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Member" />
+            <Button fx:id="btn_voitures" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Voitures" />
+            <Button fx:id="btn_settings" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Settings" />
          </children>
       </VBox>
    </left>

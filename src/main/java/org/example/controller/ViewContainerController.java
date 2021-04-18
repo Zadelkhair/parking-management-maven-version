@@ -53,29 +53,26 @@ public class ViewContainerController extends MainView implements Initializable {
         ButtonBase btn = (ButtonBase) node;
 
         switch (btn.getText()){
+            case "Home":
+//                App.viewController.navigateTo("primary.fxml",btn);
+                return;
+            case "Reservation":
+//                App.viewController.navigateTo("parkinLot.fxml",btn);
+                return;
             case "Camera":
-                App.viewController.navigateTo("primary.fxml",btn);
+//                App.viewController.navigateTo("Simple3.fxml",btn);
                 return;
             case "Parking lot":
-                App.viewController.navigateTo("parkinLot.fxml",btn);
-                return;
-            case "Sample3":
-                App.viewController.navigateTo("Simple3.fxml",btn);
+//                App.viewController.navigateTo("members.fxml",btn);
                 return;
             case "Member":
                 App.viewController.navigateTo("members.fxml",btn);
                 return;
-            case "History":
-                App.viewController.navigateTo("history.fxml",btn);
+            case "Voitures":
+//                App.viewController.navigateTo("settings.fxml",btn);
                 return;
             case "Settings":
                 App.viewController.navigateTo("settings.fxml",btn);
-                return;
-            case "Users":
-                App.viewController.navigateTo("_users.fxml",btn);
-                return;
-            case "Price":
-                App.viewController.navigateTo("sample2.fxml",btn);
                 return;
         }
 
