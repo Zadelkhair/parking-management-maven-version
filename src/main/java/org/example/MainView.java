@@ -20,7 +20,7 @@ public abstract class MainView {
     public void navigateTo(String viewUrl){
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(viewUrl));
+            Parent root = FXMLLoader.load(App.class.getResource(viewUrl));
             getBp().setCenter(root);
         } catch (IOException e) {
             e.printStackTrace();

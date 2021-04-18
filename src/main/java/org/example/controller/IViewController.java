@@ -19,5 +19,7 @@ public interface IViewController {
 
     void displayMain(String viewfxml, Stage stage);
 
+    void displayMain(String viewfxml, Stage stage, boolean wait, boolean transparent);
+
     void displayMain(String viewfxml, Stage stage, boolean wait);
 }

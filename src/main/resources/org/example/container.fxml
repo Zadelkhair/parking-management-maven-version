@@ -36,6 +36,6 @@
       <AnchorPane id="main" fx:id="ap" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <stylesheets>
-      <URL value="@../../../../../../../../IdeaProjects/NewProj/src/sample/view/css/style.css" />
+      <URL value="@css/style.css" />
    </stylesheets>
 </BorderPane>

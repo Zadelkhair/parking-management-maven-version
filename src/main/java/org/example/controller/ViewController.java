@@ -90,19 +90,23 @@ public class ViewController implements IViewController {
     }
 
     @Override
-    public void displayMain(String viewfxml, Stage stage, boolean wait) {
+    public void displayMain(String viewfxml, Stage stage, boolean wait, boolean transparent) {
 
         //scene
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewfxml));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(viewfxml));
 
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
 
             Object obj = fxmlLoader.getController();
-
             this.mainView = (MainView) obj;
+
+            if (transparent) {
+                stage.initStyle(StageStyle.TRANSPARENT);
+                scene.setFill(Color.TRANSPARENT);
+            }
 
             stage.setScene(scene);
 
@@ -117,4 +121,7 @@ public class ViewController implements IViewController {
 
     }
 
+    public void displayMain(String viewfxml, Stage stage, boolean wait ){
+        this.displayMain(viewfxml, stage, wait,false);
+    }
 }

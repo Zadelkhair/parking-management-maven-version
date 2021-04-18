@@ -15,7 +15,6 @@ public class Entrer extends Model {
 	private String libelle;
 	private int id_parking;
 
-
     //Constructors
     public Entrer(){}
 
@@ -23,7 +22,6 @@ public class Entrer extends Model {
         this.id = id;
 		this.libelle = libelle;
 		this.id_parking = id_parking;
-
     }
 
     //Geter and seters
@@ -41,9 +39,6 @@ public class Entrer extends Model {
 	public void setId_parking(int id_parking) {
 	   this.id_parking = id_parking;
 	}
-
-
-
 
     //
     @Override

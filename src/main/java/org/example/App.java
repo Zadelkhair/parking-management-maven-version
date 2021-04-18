@@ -65,10 +65,11 @@ public class App extends Application {
         }
 
         if (!auth.isLoggedIn()) {
-            (new ViewController()).display("login.fxml", new Stage(), true, true);
+            viewController = new ViewController();
+
+            viewController.display("login.fxml", new Stage(), true);
 
             //i should use proxy instance
-            viewController = new ViewController();
             stage.initStyle(StageStyle.UNDECORATED);
             viewController.displayMain("container.fxml", stage);
         }

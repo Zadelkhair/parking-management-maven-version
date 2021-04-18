@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="379.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="379.0" fx:controller="org.example.controller.ViewLoginController" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" textAlignment="CENTER" VBox.vgrow="ALWAYS">
          <font>
@@ -19,17 +19,20 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </Text>
+
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="username :" />
-      <TextField>
+      <TextField fx:id="user" >
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
-      </TextField>
+      </TextField >
+
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="password :" />
-      <TextField />
+      <TextField fx:id="password" />
+
       <HBox alignment="TOP_RIGHT" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefWidth="200.0">
          <children>
-            <Button alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Login" textAlignment="CENTER" />
+            <Button alignment="TOP_CENTER" onMouseClicked="#login"  mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Login" textAlignment="CENTER" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class Model {
 
-    protected int id = -1;
+    public int id = -1;
     protected List<Map<String,Object>> all = null;
 
     public void setId(int id){

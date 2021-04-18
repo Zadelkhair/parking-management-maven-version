@@ -1,0 +1,43 @@
+.title-bar{
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 10;
+    -fx-font-size:15;
+}
+
+.btn-nav-style{
+    -fx-background-color: trasparent;
+    -fx-text-fill: white;
+    -fx-padding: 20;
+    -fx-font-size: 20;
+    -fx-border-width: 0 0 0 7;
+    -fx-border-color: #24292e;
+}
+
+.btn-nav-style-selected , .btn-nav-style:hover {
+    -fx-border-color: white;
+    -fx-cursor: hand;
+}
+
+.btn-close{
+
+}
+.hover_border:hover
+{
+-fx-background-color:#88adc6 !important;
+-fx-cursor:hand;
+-fx-background-radius:0em 0em 0em 0em;
+}
+.cursor-hand{-fx-cursor:hand;
+}
+.img
+{
+-fx-background-radius:2em;-fx-border-radius:10 10 10 10;
+}
+
+.btn-settings{
+-fx-background-color:  #24292e; -fx-text-fill: white; -fx-font-size: 25px;
+}
+
+.btn-settings:hover{
+-fx-underline:true;-fx-cursor: hand;
+}
