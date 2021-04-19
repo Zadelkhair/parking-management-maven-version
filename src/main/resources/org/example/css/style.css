@@ -45,3 +45,20 @@
 .section-title{
 -fx-border-style: solid;-fx-border-width: 1 0 0 0;
 }
+
+.lbl-place{
+-fx-background-color: white; -fx-text-fill: black;
+}
+
+.lbl-place:hover{
+-fx-underline:true;-fx-cursor: hand;
+}
+
+
+.place-reserver{
+-fx-background-color: green; -fx-text-fill: white;
+}
+
+.place-disponible{
+-fx-background-color: red; -fx-text-fill: white;
+}
