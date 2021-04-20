@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HistoriqueViewController">
+<AnchorPane prefHeight="442.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HistoriqueViewController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="499.0" prefWidth="679.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="499.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Historique" textAlignment="CENTER">
                <font>

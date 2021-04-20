@@ -42,8 +42,32 @@ public class SettingViewController {
         ButtonBase btn = (ButtonBase) node;
 
         switch (btn.getText()){
+            case "Users":
+                App.viewController.navigateTo("users.fxml");
+                return;
+            case "Sortie/Entree":
+                App.viewController.navigateTo("sortie_entree.fxml");
+                return;
+            case "Type place":
+                App.viewController.navigateTo("type_place.fxml");
+                return;
+            case "Parking":
+                App.viewController.navigateTo("parking.fxml");
+                return;
+            case "Place":
+                App.viewController.navigateTo("place.fxml");
+                return;
+            case "Type member":
+                App.viewController.navigateTo("type_member.fxml");
+                return;
             case "Cameras":
-                App.viewController.navigateTo("primary.fxml");
+                App.viewController.navigateTo("camera_consultation.fxml");
+                return;
+            case "Guichets":
+                App.viewController.navigateTo("guichet.fxml");
+                return;
+            case "Roles":
+                App.viewController.navigateTo("roles.fxml");
                 return;
         }
     }

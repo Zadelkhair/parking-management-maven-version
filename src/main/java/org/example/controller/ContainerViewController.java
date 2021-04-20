@@ -62,6 +62,9 @@ public class ContainerViewController extends MainView implements Initializable {
             case "Camera":
                 App.viewController.navigateTo("WebCamPreview.fxml",btn);
                 return;
+            case "Historique":
+                App.viewController.navigateTo("historique.fxml",btn);
+                return;
             case "Parking lot":
                 App.viewController.navigateTo("historique.fxml",btn);
                 return;
