@@ -1,11 +1,13 @@
 package org.example.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import org.example.App;
 
@@ -49,10 +51,21 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("position_card.fxml"));
 
                 Parent root = fxmlLoader.load();
+                root.setUserData(fxmlLoader);
 
                 PositionCardViewController positionCardViewController = (PositionCardViewController) fxmlLoader.getController();
                 positionCardViewController.setNum(i+1);
                 positionCardViewController.setDisponible((new Random()).nextBoolean());
+
+                root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Label label = (Label) mouseEvent.getTarget();
+                        if(label!=null){
+                            System.out.println(label.getText());
+                        }
+                    }
+                });
 
                 flowpanel.getChildren().add(root);
             }
@@ -65,4 +78,5 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
     public void onClickConfermer(MouseEvent mouseEvent) {
 
     }
+
 }

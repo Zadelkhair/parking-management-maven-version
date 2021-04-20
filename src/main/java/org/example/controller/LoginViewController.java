@@ -14,7 +14,7 @@ import org.example.model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewLoginController implements Initializable {
+public class LoginViewController implements Initializable {
 
 
     @Override

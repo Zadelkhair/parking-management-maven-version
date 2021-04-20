@@ -34,12 +34,12 @@
                   </Label>
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <FlowPane fx:id="flowpanel" hgap="10.0" prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane fx:id="flowpanel" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" />
                      </content>
                   </ScrollPane>
                   <HBox alignment="TOP_RIGHT" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickConfermer" text="Confermer">
+                        <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickConfermer" text="Confirmer">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

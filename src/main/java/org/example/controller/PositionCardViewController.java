@@ -3,6 +3,7 @@ package org.example.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,5 +45,16 @@ public class PositionCardViewController implements Initializable {
 
     public void setNum(int i) {
         this.lbl_num_place.setText(i+"");
+    }
+
+    public int getNum() {
+        return Integer.parseInt(this.lbl_num_place.getText());
+    }
+
+    public void setOnChoseAction(){
+
+    }
+
+    public void onClck(MouseEvent mouseEvent) {
     }
 }

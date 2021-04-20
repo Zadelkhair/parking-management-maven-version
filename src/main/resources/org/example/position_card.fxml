@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="52.0" prefWidth="125.0" style="-fx-border-radius: 5px; -fx-border-width: 1px; -fx-border-color: gray; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.PositionCardViewController">
    <children>
-      <Label fx:id="lbl_num_place" alignment="CENTER" layoutY="36.0" prefWidth="138.0" styleClass="lbl-place" stylesheets="@css/style.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="lbl_num_place" alignment="CENTER" layoutY="36.0" onMouseClicked="#onClck" prefWidth="138.0" styleClass="lbl-place" stylesheets="@css/style.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding>

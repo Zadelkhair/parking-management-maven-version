@@ -12,7 +12,7 @@ import org.example.MainView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewContainerController extends MainView implements Initializable {
+public class ContainerViewController extends MainView implements Initializable {
 
     @FXML
     private VBox navVbox;
@@ -60,16 +60,16 @@ public class ViewContainerController extends MainView implements Initializable {
                 App.viewController.navigateTo("reservation_step1.fxml",btn);
                 return;
             case "Camera":
-//                App.viewController.navigateTo("Simple3.fxml",btn);
+                App.viewController.navigateTo("WebCamPreview.fxml",btn);
                 return;
             case "Parking lot":
-//                App.viewController.navigateTo("members.fxml",btn);
+                App.viewController.navigateTo("historique.fxml",btn);
                 return;
             case "Member":
                 App.viewController.navigateTo("members.fxml",btn);
                 return;
             case "Voitures":
-//                App.viewController.navigateTo("settings.fxml",btn);
+                App.viewController.navigateTo("voiture.fxml",btn);
                 return;
             case "Settings":
                 App.viewController.navigateTo("settings.fxml",btn);
