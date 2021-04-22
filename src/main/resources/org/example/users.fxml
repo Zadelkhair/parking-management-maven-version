@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.UsersViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="556.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.UsersViewController">
+<children>
+    <VBox prefHeight="499.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Utilisateur" textAlignment="CENTER">
+                <font>
+                    <Font size="37.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="94.0" prefWidth="498.0">
+                     <children>
+                        <HBox fillHeight="false" prefHeight="74.0" prefWidth="639.0">
+                           <children>
+                              <VBox prefHeight="57.0" prefWidth="249.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="84.0" text="Utilisateur" />
+                                    <TextField id="txt_user" fx:id="txt_user" prefHeight="25.0" prefWidth="253.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="43.0" prefWidth="173.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="215.0" text="Mot de passe" />
+                                    <TextField id="txt_pass" fx:id="txt_pass" prefHeight="25.0" prefWidth="233.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label prefHeight="17.0" prefWidth="127.0" text="Role d'utilisateur" />
+                        <ComboBox id="cmb_role_user" fx:id="cmb_role_user" prefHeight="43.0" prefWidth="480.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="83.0" prefWidth="165.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="46.0" prefWidth="146.0" text="Supprimer" />
+                        <Button mnemonicParsing="false" onAction="#onClickSauvgarder" prefHeight="46.0" prefWidth="146.0" text="Sauvgarder">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="4.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <TableView id="tablev_users" fx:id="tablev_users" maxHeight="1.7976931348623157E308" onMouseClicked="#onMouseClickTableView" prefHeight="240.0" prefWidth="639.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></TableView>
+        </children>
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+    </VBox>
+</children>
 </AnchorPane>

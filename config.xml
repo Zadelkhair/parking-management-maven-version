@@ -8,8 +8,8 @@
     <!-- Database configuration -->
     <entry key="DB_URL">jdbc:mysql://127.0.0.1</entry>
     <entry key="DB_NAME">gestion_parking_db</entry>
-    <entry key="DB_USER">zad</entry>
-    <entry key="DB_PASSWORD">zad</entry>
+    <entry key="DB_USER">root</entry>
+    <entry key="DB_PASSWORD"></entry>
     <!---->
 
 </properties>
