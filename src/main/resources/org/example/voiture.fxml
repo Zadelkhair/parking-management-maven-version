@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="556.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MemberViewController">
+<AnchorPane prefHeight="556.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.VoitureViewController">
    <children>
       <VBox prefHeight="499.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -25,7 +25,7 @@
             </Label>
             <HBox fillHeight="false" prefHeight="35.0" prefWidth="639.0">
                <children>
-                  <VBox prefHeight="102.0" prefWidth="158.0">
+                  <VBox prefHeight="102.0" prefWidth="158.0" >
                      <children>
                         <Label text="Matricule" />
                         <TextField id="txt_matricule" fx:id="txt_matricule">
