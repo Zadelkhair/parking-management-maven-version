@@ -92,7 +92,6 @@ public class TypeMemberViewController implements Initializable {
                 clearInputs();
             }
         }
-
     }
 
     @FXML
