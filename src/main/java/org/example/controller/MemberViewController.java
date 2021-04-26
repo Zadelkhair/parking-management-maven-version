@@ -105,6 +105,26 @@ public class MemberViewController {
         }
     }
 
+    public void onMouseClickTableView(MouseEvent mouseEvent) {
+        Object obj = tablev_members.getSelectionModel().getSelectedItem();
+        if (mouseEvent.getClickCount() == 2 && obj != null) {
+            if(members.indexOf(obj) >= 0){
+                selectedMember = (Member)obj;
+                txt_nom.setText(selectedMember.getName());
+                txt_prenom.setText(selectedMember.getPrenom());
+                date_d.setValue(selectedMember.getDebut_abonnement().toLocalDate());
+                date_f.setValue(selectedMember.getFin_abonnement().toLocalDate());
+
+                CmbTypeMember typeMember = new CmbTypeMember();
+                typeMember.setId(selectedMember.getId_member_type());
+                if(typeMember.read()){
+                    cmb_type_members.getSelectionModel().select(typeMember);
+                }
+
+            }
+        }
+    }
+
     @FXML
     void initialize() {
 
@@ -164,25 +184,6 @@ public class MemberViewController {
         }
     }
 
-    public void onMouseClickTableView(MouseEvent mouseEvent) {
-        Object obj = tablev_members.getSelectionModel().getSelectedItem();
-        if (mouseEvent.getClickCount() == 2 && obj != null) {
-            if(members.indexOf(obj) >= 0){
-                selectedMember = (Member)obj;
-                txt_nom.setText(selectedMember.getName());
-                txt_prenom.setText(selectedMember.getPrenom());
-                date_d.setValue(selectedMember.getDebut_abonnement().toLocalDate());
-                date_f.setValue(selectedMember.getFin_abonnement().toLocalDate());
-
-                CmbTypeMember typeMember = new CmbTypeMember();
-                typeMember.setId(selectedMember.getId_member_type());
-                if(typeMember.read()){
-                    cmb_type_members.getSelectionModel().select(typeMember);
-                }
-
-            }
-        }
-    }
 
     private void clearInputs() {
         txt_prenom.clear();
