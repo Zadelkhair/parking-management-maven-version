@@ -2,6 +2,7 @@ package org.example.model;
 
 import org.example.App;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +45,13 @@ public abstract class Model {
         cols = cols.substring(0,cols.length()-1);
         prepareVals = prepareVals.substring(0,prepareVals.length()-1);
 
-        Object id = App.db.executeScalar("INSERT INTO "+tableName()+"("+cols+") VALUES ("+prepareVals+");SELECT LAST_INSERT_ID();",params);
+        App.db.executeUpdate("INSERT INTO "+tableName()+"("+cols+") VALUES ("+prepareVals+");",params);
+        Object id = App.db.executeScalar("SELECT LAST_INSERT_ID();");
 
         if(id==null)
             return false;
 
-        this.id = (int)id;
+        this.id = ((BigInteger)id).intValue() ;
 
         return true;
 
@@ -76,6 +78,7 @@ public abstract class Model {
 
         for (Map.Entry<String, Object> cell : row.entrySet()) {
             prepareVals += cell.getKey() + "=?,";
+            params.add(cell.getValue());
         }
         prepareVals = prepareVals.substring(0,prepareVals.length()-1);
         params.add(this.id);

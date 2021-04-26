@@ -42,7 +42,6 @@ public class TypeMember extends Model {
         this.id = (int) row.get("id");
 		this.lebelle = (String) row.get("lebelle");
 
-
         return true;
     }
 
@@ -51,7 +50,6 @@ public class TypeMember extends Model {
 
         Map<String,Object> row = new HashMap<>();
 		row.put("lebelle",lebelle);
-
 
         return row;
     }
