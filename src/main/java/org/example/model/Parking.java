@@ -14,13 +14,13 @@ public class Parking extends Model {
     //felds
 	private String name;
 	private int nombre_total;
-	private double surface;
+	private float  surface;
 
 
     //Constructors
     public Parking(){}
 
-    public Parking(int id,String name,int nombre_total,double surface) {
+    public Parking(int id,String name,int nombre_total,float surface) {
         this.id = id;
 		this.name = name;
 		this.nombre_total = nombre_total;
@@ -45,10 +45,10 @@ public class Parking extends Model {
 	}
 
 
-	public double getSurface() {
+	public float getSurface() {
 	   return surface;
 	}
-	public void setSurface(double surface) {
+	public void setSurface(float surface) {
 	   this.surface = surface;
 	}
 
@@ -62,7 +62,7 @@ public class Parking extends Model {
         this.id = (int) row.get("id");
 		this.name = (String) row.get("name");
 		this.nombre_total = (int) row.get("nombre_total");
-		this.surface = (double) row.get("surface");
+		this.surface = (float) row.get("surface");
 
 
         return true;

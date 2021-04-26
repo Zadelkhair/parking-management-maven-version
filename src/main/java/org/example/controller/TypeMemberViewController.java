@@ -75,7 +75,7 @@ public class TypeMemberViewController implements Initializable {
                 int i = typeMembers.indexOf(selectedTypeMemeber);
                 if(i>=0){
                     typeMembers.set(i,selectedTypeMemeber);
-                    System.out.println(typeMembers.get(i).getLebelle());
+                    selectedTypeMemeber = null;
                 }
                 loadTableviewTypeMembersData();
                 clearInputs();

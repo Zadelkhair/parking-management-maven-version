@@ -68,7 +68,7 @@ public class MemberViewController {
                 int i = members.indexOf(selectedMember);
                 if(i>=0){
                     members.set(i,selectedMember);
-                    System.out.println(typeMembers.get(i).getLebelle());
+                    selectedMember = null;
                 }
                 loadTableviewMembersData();
                 clearInputs();
