@@ -48,6 +48,8 @@ public abstract class Model {
         App.db.executeUpdate("INSERT INTO "+tableName()+"("+cols+") VALUES ("+prepareVals+");",params);
         Object id = App.db.executeScalar("SELECT LAST_INSERT_ID();");
 
+        System.out.println(id);
+
         if(id==null)
             return false;
 
