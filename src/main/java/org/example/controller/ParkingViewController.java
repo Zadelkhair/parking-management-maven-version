@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.model.Member;
 import org.example.model.Parking;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -39,11 +41,14 @@ public class ParkingViewController implements Initializable {
 
     @FXML
     void onClickSauvgarder(ActionEvent event) {
+        String nom=txt_nompark.getText();
+        String nbrplace= txt_nbr_place.getText();
+        String surface=txt_surf.getText();
         if(selectedParking!=null){
             //update
-            selectedParking.setName(txt_nompark.getText());
-            selectedParking.setNombre_total(Integer.parseInt(txt_nbr_place.getText()));
-            selectedParking.setSurface(Float.parseFloat(txt_surf.getText()));
+            selectedParking.setName(nom);
+            selectedParking.setNombre_total(Integer.valueOf(nbrplace));
+            selectedParking.setSurface(Float.valueOf(surface));
 
             if(selectedParking.update()){
                 int i = parkings.indexOf(selectedParking);
@@ -56,31 +61,52 @@ public class ParkingViewController implements Initializable {
             }
         }
         else{
-            //create
-            Parking parking = new Parking();
-            parking.setId(-1);
-            parking.setName(txt_nompark.getText());
-            parking.setNombre_total(Integer.parseInt(txt_nbr_place.getText()));
-            parking.setSurface(Float.parseFloat(txt_surf.getText()));
+            if(nom.isEmpty()||nbrplace.isEmpty()||surface.isEmpty()){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Remplir tous les champs");
+                alert.showAndWait();
+                return;
+            }
+            else {
 
-            if(parking.create()){
-                parkings.add(parking);
-                loadTableviewparkingData();
-                clearInputs();
+                //create
+                Parking parking = new Parking();
+                parking.setId(-1);
+                parking.setName(txt_nompark.getText());
+                parking.setNombre_total(Integer.valueOf(nbrplace));
+                parking.setSurface(Float.parseFloat(surface));
+
+                if (parking.create()) {
+                    parkings.add(parking);
+                    loadTableviewparkingData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
-        if(selectedParking!=null){
-            if(selectedParking.delete()){
-                parkings.remove(selectedParking);
-                loadTableviewparkingData();
-                selectedParking = null;
-                this.clearInputs();
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+
+        if (action == 0) {
+            if (selectedParking != null) {
+
+
+                if (selectedParking.delete()) {
+                    parkings.remove(selectedParking);
+                    loadTableviewparkingData();
+                    selectedParking = null;
+                    this.clearInputs();
+                }
+
             }
+            else {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+
         }
+
+
     }
 
     @FXML
