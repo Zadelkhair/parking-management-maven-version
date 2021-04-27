@@ -184,7 +184,6 @@ public class MemberViewController {
         }
     }
 
-
     private void clearInputs() {
         txt_prenom.clear();
         txt_nom.clear();
