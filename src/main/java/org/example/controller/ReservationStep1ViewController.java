@@ -1,7 +1,10 @@
 package org.example.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -9,15 +12,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import org.example.App;
+import org.example.model.Member;
+import org.example.model.Voiture;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URL;
+import java.util.*;
 
-public class ReservationStep1ViewController {
+public class ReservationStep1ViewController implements Initializable {
 
 
     @FXML
-    private ComboBox<?> cmb_member;
+    private ComboBox<CmbMember> cmb_member;
 
     @FXML
     private HBox box_new_user;
@@ -35,10 +40,10 @@ public class ReservationStep1ViewController {
     private DatePicker date_f;
 
     @FXML
-    private ComboBox<?> cmb_type_members;
+    private ComboBox<CmbMember> cmb_type_members;
 
     @FXML
-    private ComboBox<?> cmb_voiture;
+    private ComboBox<CmbVoiture> cmb_voiture;
 
     @FXML
     private HBox boxNewUser11;
@@ -58,11 +63,20 @@ public class ReservationStep1ViewController {
     @FXML
     private Button btn_suiv;
 
+    private ArrayList<CmbVoiture> voitures;
+    private ArrayList<CmbMember> members;
+    private CmbVoiture selectedVoiture;
+
     @FXML
     void onClickSuivant(MouseEvent event) {
 
+        CmbVoiture selectedVoiture = cmb_voiture.getSelectionModel().getSelectedItem();
+
+        if(selectedVoiture==null)
+            return;
+
         Map<String,Object> data = new HashMap<>();
-        data.put("voiture_id",1);
+        data.put("voiture_id",selectedVoiture.getId());
 
         App.viewController.navigateTo("reservation_step2.fxml", null, data);
     }
@@ -71,4 +85,68 @@ public class ReservationStep1ViewController {
     void onClickSupprimer(MouseEvent event) {
 
     }
+
+    @FXML
+    void onActionMember(ActionEvent event) {
+        CmbMember cmbMember = cmb_member.getSelectionModel().getSelectedItem();
+        loadMembreVoitursData(cmbMember.getId());
+        loadComboboxVoitureData();
+    }
+
+    private void loadComboboxVoitureData() {
+        //load cmb voitures
+        ObservableList<CmbVoiture> voituresObservableList = FXCollections.observableList(voitures);
+        cmb_voiture.setItems(voituresObservableList);
+    }
+
+    public void loadMembreVoitursData(int id_m){
+        voitures = new ArrayList<>();
+
+        List<Map<String,Object>> all = (new CmbVoiture()).getAllByMember(id_m);
+
+        for (Map<String,Object> row:all) {
+            CmbVoiture v = new CmbVoiture();
+            v.readRow(row);
+            voitures.add(v);
+        }
+    }
+
+    public void loadMembresData(){
+        members = new ArrayList<>();
+
+        List<Map<String,Object>> all = (new CmbMember()).getAll(true);
+
+        for (Map<String,Object> row:all) {
+            CmbMember m = new CmbMember();
+            m.readRow(row);
+            members.add(m);
+        }
+    }
+
+    public void loadComboboxTypeMemberData(){
+        //load cmb type members
+        ObservableList<CmbMember> memberObservableList = FXCollections.observableList(members);
+        cmb_member.setItems(memberObservableList);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadMembresData();
+        loadComboboxTypeMemberData();
+    }
+
+    class CmbMember extends Member {
+        @Override
+        public String toString() {
+            return this.getPrenom() + " " + this.getName() ;
+        }
+    }
+
+    class CmbVoiture extends Voiture {
+        @Override
+        public String toString() {
+            return this.getMatricule() + " (" + this.getMatricule() + ")" ;
+        }
+    }
+
 }

@@ -43,6 +43,23 @@ public class PositionCardViewController implements Initializable {
         this.disponible = disponible;
     }
 
+    public void select(boolean select) {
+
+        if(select){
+            if (!this.lbl_num_place.getStyleClass().contains("place-slected")) {
+                this.lbl_num_place.getStyleClass().add("place-slected");
+            }
+        }
+        else{
+            if (this.lbl_num_place.getStyleClass().contains("place-slected")) {
+                this.lbl_num_place.getStyleClass().remove("place-slected");
+            }
+        }
+
+        this.disponible = disponible;
+    }
+
+
     public void setNum(int i) {
         this.lbl_num_place.setText(i+"");
     }

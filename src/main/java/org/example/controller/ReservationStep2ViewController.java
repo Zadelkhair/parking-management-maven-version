@@ -10,12 +10,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import org.example.App;
+import org.example.model.Place;
+import org.example.model.Reservation;
 
+import javax.swing.text.Position;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class ReservationStep2ViewController implements IReceiveData, Initializable {
 
@@ -26,6 +31,7 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
     private FlowPane flowpanel;
 
     private int voiture_id = -1;
+    private ArrayList<Place> places;
 
     public int getVoiture_id() {
         return voiture_id;
@@ -35,6 +41,7 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
         this.voiture_id = voiture_id;
     }
 
+    private Reservation reservation;
 
     @Override
     public void setData(Map<String, Object> data) {
@@ -46,23 +53,32 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        loadPlaces();
+
         try {
-            for (int i = 0; i < 20; i++) {
+            for (Place p : places) {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("position_card.fxml"));
 
                 Parent root = fxmlLoader.load();
                 root.setUserData(fxmlLoader);
 
                 PositionCardViewController positionCardViewController = (PositionCardViewController) fxmlLoader.getController();
-                positionCardViewController.setNum(i+1);
-                positionCardViewController.setDisponible((new Random()).nextBoolean());
+                positionCardViewController.setNum(p.getId());
+                positionCardViewController.setDisponible(p.isReserverd());
 
                 root.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         Label label = (Label) mouseEvent.getTarget();
-                        if(label!=null){
-                            System.out.println(label.getText());
+                        if (label != null) {
+                            reservation = new Reservation();
+                            Date date = new Date(System.currentTimeMillis());
+                            reservation.setDate_debut(date);
+                            reservation.setId_V(voiture_id);
+                            reservation.setId_place(Integer.parseInt(label.getText()));
+                            reservation.setPayment_state(0);
+                            reservation.setState(0);
+                            reservation.setDate_fin(date);
                         }
                     }
                 });
@@ -75,7 +91,24 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
 
     }
 
-    public void onClickConfermer(MouseEvent mouseEvent) {
+    public void loadPlaces(){
+        places = new ArrayList<>();
+
+        List<Map<String, Object>> all = (new Place()).getAll(true);
+
+        for (Map<String, Object> row : all) {
+            Place p = new Place();
+            p.readRow(row);
+            places.add(p);
+        }
+    }
+
+    public void onClickConfirmer(MouseEvent mouseEvent) {
+        if (reservation == null)
+            return;
+
+        System.out.println(reservation.toString());
+        reservation.create();
 
     }
 

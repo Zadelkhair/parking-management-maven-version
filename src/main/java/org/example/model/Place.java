@@ -1,6 +1,10 @@
 package org.example.model;
 
+import org.example.App;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -73,6 +77,21 @@ public class Place extends Model {
         return new Place();
     }
 
-    //Custom methods
+    public boolean isReserverd() {
+
+        List<Object> params = new ArrayList<>();
+        params.add(getId());
+        Object obj = App.db.executeScalar(
+                    "SELECT count(*) " +
+                        "FROM reservations r " +
+                        "WHERE r.id_place = ? " +
+                        "AND state = 0",params);
+
+        if(obj==null)
+            return false;
+
+        return (long)obj>0;
+
+    }
 
 }

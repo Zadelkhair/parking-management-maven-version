@@ -35,7 +35,7 @@
                      </VBox.margin>
                   </Label>
                   <Label text="Member" />
-                  <ComboBox fx:id="cmb_member" maxWidth="1.7976931348623157E308">
+                  <ComboBox fx:id="cmb_member" maxWidth="1.7976931348623157E308" onAction="#onActionMember">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

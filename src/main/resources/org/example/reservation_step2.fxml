@@ -39,7 +39,7 @@
                   </ScrollPane>
                   <HBox alignment="TOP_RIGHT" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickConfermer" text="Confirmer">
+                        <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickConfirmer" text="Confirmer">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
