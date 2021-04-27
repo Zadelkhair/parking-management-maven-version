@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.model.Member;
 import org.example.model.TypeMember;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
 import java.util.*;
@@ -82,20 +84,31 @@ public class TypeMemberViewController implements Initializable {
             }
         }
         else{
-            //create
-            TypeMember typeMember = new TypeMember();
-            typeMember.setId(-1);
-            typeMember.setLebelle(txt_tymembre.getText());
-            if(typeMember.create()){
-                typeMembers.add(typeMember);
-                loadTableviewTypeMembersData();
-                clearInputs();
+            if(txt_tymembre.getText().isEmpty()){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("ENTRER LE  TYPE ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                //create
+                TypeMember typeMember = new TypeMember();
+                typeMember.setId(-1);
+                typeMember.setLebelle(txt_tymembre.getText());
+                if (typeMember.create()) {
+                    typeMembers.add(typeMember);
+                    loadTableviewTypeMembersData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+        if (action == 0) {
         if(selectedTypeMemeber!=null){
             if(selectedTypeMemeber.delete()){
                 typeMembers.remove(selectedTypeMemeber);
@@ -104,8 +117,10 @@ public class TypeMemberViewController implements Initializable {
                 this.clearInputs();
             }
         }
+        else
+            {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+               }
     }
-
     @FXML
     void onMouseClickTableView(MouseEvent event){
         Object obj = tablev_tymembre.getSelectionModel().getSelectedItem();
