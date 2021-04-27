@@ -26,16 +26,12 @@ public class ParkingViewController implements Initializable {
 
     @FXML
     private TextField txt_nompark;
-
     @FXML
     private TextField txt_surf;
-
     @FXML
     private TextField txt_nbr_place;
-
     @FXML
     private TableView<Parking> tablev_parking;
-
     private ArrayList<Parking> parkings;
     private Parking selectedParking;
 

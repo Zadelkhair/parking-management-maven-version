@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.example.model.*;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -26,10 +28,8 @@ public class PlaceViewController implements Initializable {
 
     @FXML
     private ComboBox<CmbParking> cmb_type_parking;
-
     @FXML
     private TableView<Place> tablev_place;
-
     private ArrayList<CmbTypePlace> typePlaces;
     private ArrayList<CmbParking> parkings;
     private ArrayList<Place> places;
@@ -43,16 +43,11 @@ public class PlaceViewController implements Initializable {
 
             if(selectedTypePlace==null)
                 return;
-
             selectedPlace.setId_TP(selectedTypePlace.getId());
-
             CmbParking selectedParking = cmb_type_parking.getSelectionModel().getSelectedItem();
-
             if(selectedParking==null)
                 return;
-
             selectedPlace.setId_parking(selectedParking.getId());
-
             if(selectedPlace.update()){
                 int i = places.indexOf(selectedPlace);
                 if(i>=0){
@@ -64,26 +59,39 @@ public class PlaceViewController implements Initializable {
             }
         }
         else{
-            //create
-            Place place = new Place();
-            place.setId(-1);
+            if(cmb_type_parking.getSelectionModel().isEmpty()||cmb_type_place.getSelectionModel().isEmpty())
+            {
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("entrer tous les champs ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                //create
+                Place place = new Place();
+                place.setId(-1);
 
-            CmbTypePlace selectedPlace = cmb_type_place.getSelectionModel().getSelectedItem();
-            place.setId_TP(selectedPlace.getId());
+                CmbTypePlace selectedPlace = cmb_type_place.getSelectionModel().getSelectedItem();
+                place.setId_TP(selectedPlace.getId());
 
-            CmbParking selectedParking = cmb_type_parking.getSelectionModel().getSelectedItem();
-            place.setId_parking(selectedParking.getId());
+                CmbParking selectedParking = cmb_type_parking.getSelectionModel().getSelectedItem();
+                place.setId_parking(selectedParking.getId());
 
-            if(place.create()){
-                places.add(place);
-                loadTableviewPlacesData();
-                clearInputs();
+                if (place.create()) {
+                    places.add(place);
+                    loadTableviewPlacesData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+
+        if (action == 0) {
         if(selectedPlace!=null){
             if(selectedPlace.delete()){
                 places.remove(selectedPlace);
@@ -91,6 +99,10 @@ public class PlaceViewController implements Initializable {
                 selectedPlace = null;
                 this.clearInputs();
             }
+
+        }
+        else {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+
         }
     }
 

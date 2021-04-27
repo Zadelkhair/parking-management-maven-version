@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.example.model.TypePlace;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,8 @@ import java.util.ResourceBundle;
 
 public class TypePlaceViewController implements Initializable {
 
-
     @FXML
     private TextField txt_typlace;
-
     @FXML
     private TableView<TypePlace> tablev_typlace;
 
@@ -47,20 +47,31 @@ public class TypePlaceViewController implements Initializable {
             }
         }
         else{
-            //create
-            TypePlace typePlace = new TypePlace();
-            typePlace.setId(-1);
-            typePlace.setLibelle(txt_typlace.getText());
-            if(typePlace.create()){
-                typePlaces.add(typePlace);
-                loadTableviewTypePlaceData();
-                clearInputs();
+            if(txt_typlace.getText().isEmpty()){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("remplir le textfield  ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                //create
+                TypePlace typePlace = new TypePlace();
+                typePlace.setId(-1);
+                typePlace.setLibelle(txt_typlace.getText());
+                if (typePlace.create()) {
+                    typePlaces.add(typePlace);
+                    loadTableviewTypePlaceData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+        if (action == 0) {
         if(selectedTypePlace!=null){
             if(selectedTypePlace.delete()){
                 typePlaces.remove(selectedTypePlace);
@@ -69,8 +80,10 @@ public class TypePlaceViewController implements Initializable {
                 this.clearInputs();
             }
         }
+        else
+        {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+        }
     }
-
 
     @FXML
     void onMouseClickTableView(MouseEvent event) {

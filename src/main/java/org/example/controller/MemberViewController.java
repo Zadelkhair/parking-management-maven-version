@@ -19,6 +19,8 @@ import org.example.model.Member;
 import org.example.model.Model;
 import org.example.model.TypeMember;
 
+import javax.swing.*;
+
 public class MemberViewController {
 
     @FXML
@@ -75,26 +77,39 @@ public class MemberViewController {
             }
         }
         else{
-            //create
-            Member member = new Member();
-            member.setId(-1);
-            member.setName(txt_nom.getText());
-            member.setPrenom(txt_prenom.getText());
-            member.setDebut_abonnement(Date.valueOf(date_d.getValue()));
-            member.setFin_abonnement(Date.valueOf(date_f.getValue()));
-            CmbTypeMember selectedTypeMember = cmb_type_members.getSelectionModel().getSelectedItem();
-            member.setId_member_type(selectedTypeMember.getId());
+            if(txt_nom.getText().isEmpty()||txt_prenom.getText().isEmpty()||cmb_type_members.getSelectionModel().isEmpty()||date_d.getEditor().getText().isEmpty()||date_f.getEditor().getText().isEmpty())
+            {
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("entrer tous les champs ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                //create
+                Member member = new Member();
+                member.setId(-1);
+                member.setName(txt_nom.getText());
+                member.setPrenom(txt_prenom.getText());
+                member.setDebut_abonnement(Date.valueOf(date_d.getValue()));
+                member.setFin_abonnement(Date.valueOf(date_f.getValue()));
+                CmbTypeMember selectedTypeMember = cmb_type_members.getSelectionModel().getSelectedItem();
+                member.setId_member_type(selectedTypeMember.getId());
 
-            if(member.create()){
-                members.add(member);
-                loadTableviewMembersData();
-                clearInputs();
+                if (member.create()) {
+                    members.add(member);
+                    loadTableviewMembersData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+
+        if (action == 0) {
         if(selectedMember!=null){
             if(selectedMember.delete()){
                 members.remove(selectedMember);
@@ -102,6 +117,10 @@ public class MemberViewController {
                 selectedMember = null;
                 this.clearInputs();
             }
+
+        }
+        else {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+
         }
     }
 

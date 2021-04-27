@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.model.Member;
 import org.example.model.Voiture;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -70,24 +71,35 @@ public class VoitureViewController implements Initializable {
         }
         else{
             //create
-            Voiture voiture = new Voiture();
-            voiture.setId(-1);
-            voiture.setColour(txt_Couleur.getText());
-            voiture.setMatricule(txt_matricule.getText());
-            voiture.setLa_marque(txt_Marque.getText());
-            CmbMember selectedMember = cmb_type_member.getSelectionModel().getSelectedItem();
-            voiture.setId_m(selectedMember.getId());
+            if(txt_Couleur.getText().isEmpty()||txt_Marque.getText().isEmpty()||txt_matricule.getText().isEmpty()||cmb_type_member.getSelectionModel().isEmpty()){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("remplir le textfield  ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                Voiture voiture = new Voiture();
+                voiture.setId(-1);
+                voiture.setColour(txt_Couleur.getText());
+                voiture.setMatricule(txt_matricule.getText());
+                voiture.setLa_marque(txt_Marque.getText());
+                CmbMember selectedMember = cmb_type_member.getSelectionModel().getSelectedItem();
+                voiture.setId_m(selectedMember.getId());
 
-            if(voiture.create()){
-                voitures.add(voiture);
-                loadTableviewVoituresData();
-                clearInputs();
+                if (voiture.create()) {
+                    voitures.add(voiture);
+                    loadTableviewVoituresData();
+                    clearInputs();
+                }
             }
         }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
+        if (action == 0) {
         if(selectedVoiture !=null){
             if(selectedVoiture.delete()){
                 voitures.remove(selectedVoiture);
@@ -95,6 +107,9 @@ public class VoitureViewController implements Initializable {
                 selectedVoiture = null;
                 this.clearInputs();
             }
+        }
+        else
+        {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
         }
     }
 
