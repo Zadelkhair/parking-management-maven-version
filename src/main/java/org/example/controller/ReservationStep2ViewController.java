@@ -72,13 +72,12 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                         Label label = (Label) mouseEvent.getTarget();
                         if (label != null) {
                             reservation = new Reservation();
-                            Date date = new Date(System.currentTimeMillis());
-                            reservation.setDate_debut(date);
+                            reservation.setDate_debut(LocalDateTime.now());
+                            reservation.setDate_debut(LocalDateTime.now().plusHours(1));
                             reservation.setId_V(voiture_id);
                             reservation.setId_place(Integer.parseInt(label.getText()));
                             reservation.setPayment_state(0);
                             reservation.setState(0);
-                            reservation.setDate_fin(date);
                         }
                     }
                 });
