@@ -42,18 +42,19 @@ public abstract class Model {
             prepareVals += "?,";
             params.add(cell.getValue());
         }
+
         cols = cols.substring(0,cols.length()-1);
         prepareVals = prepareVals.substring(0,prepareVals.length()-1);
 
         App.db.executeUpdate("INSERT INTO "+tableName()+"("+cols+") VALUES ("+prepareVals+");",params);
-        Object id = App.db.executeScalar("SELECT LAST_INSERT_ID();");
+        Object id = lastId();
 
         System.out.println(id);
 
         if(id==null)
             return false;
 
-        this.id = ((BigInteger)id).intValue() ;
+        this.id = (int)id;
 
         return true;
 
@@ -138,4 +139,15 @@ public abstract class Model {
         return (long)o;
     }
 
+
+    public int lastId(){
+
+        Object o = App.db.executeScalar("select id from "+tableName()+" ORDER BY id DESC LIMIT 1;");
+
+        if(o==null)
+            return 0;
+
+        return (int)o;
+
+    }
 }
