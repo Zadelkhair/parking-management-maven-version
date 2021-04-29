@@ -46,7 +46,21 @@ public class Place extends Model {
 	   this.id_parking = id_parking;
 	}
 
+    public String getTypePlaceStr(){
+        TypePlace tp = new TypePlace();
+        tp.setId(this.getId_TP());
+        tp.read();
 
+        return tp.getLibelle();
+    }
+
+    public String getParkingStr(){
+        Parking p = new Parking();
+        p.setId(this.getId_parking());
+        p.read();
+
+        return p.getName();
+    }
 
 
     //

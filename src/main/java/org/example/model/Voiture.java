@@ -71,6 +71,15 @@ public class Voiture extends Model {
         this.id_m = id_m;
     }
 
+
+    public String getMemberStr(){
+
+        Member m = new Member();
+        m.setId(this.getId_m());
+        m.read();
+
+        return m.getName() + " " + m.getPrenom() + " ["+ m.getMemberTypeStr() +"]";
+    }
     //
     @Override
     public boolean readRow(Map<String, Object> row) {

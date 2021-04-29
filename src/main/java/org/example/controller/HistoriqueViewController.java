@@ -13,6 +13,7 @@ package org.example.controller;
         import javafx.scene.input.MouseEvent;
         import org.example.model.Member;
         import org.example.model.Reservation;
+        import org.example.model.Voiture;
 
         import java.net.URL;
         import java.util.ArrayList;
@@ -67,6 +68,25 @@ public class HistoriqueViewController implements Initializable {
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_history.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Reservation()).toRow().entrySet()) {
+
+            if(entry.getKey() == "id_V"){
+
+                column = new TableColumn("voiture");
+                column.setCellValueFactory(new PropertyValueFactory<>("voitureStr"));
+                tablev_history.getColumns().add(column);
+
+                continue;
+            }
+
+            if(entry.getKey() == "id_place"){
+
+                column = new TableColumn("place");
+                column.setCellValueFactory(new PropertyValueFactory<>("placeStr"));
+                tablev_history.getColumns().add(column);
+
+                continue;
+            }
+
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_history.getColumns().add(column);
@@ -79,7 +99,6 @@ public class HistoriqueViewController implements Initializable {
         ObservableList<Reservation> reservationObservableList = FXCollections.observableList(reservations);
         tablev_history.setItems(reservationObservableList);
     }
-
 
 
 }

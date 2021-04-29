@@ -189,6 +189,25 @@ public class PlaceViewController implements Initializable {
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_place.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Place()).toRow().entrySet()) {
+
+            if(entry.getKey() == "id_TP"){
+
+                column = new TableColumn("type place");
+                column.setCellValueFactory(new PropertyValueFactory<>("typePlaceStr"));
+                tablev_place.getColumns().add(column);
+
+                continue;
+            }
+
+            if(entry.getKey() == "id_parking"){
+
+                column = new TableColumn("parking");
+                column.setCellValueFactory(new PropertyValueFactory<>("parkingStr"));
+                tablev_place.getColumns().add(column);
+
+                continue;
+            }
+
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_place.getColumns().add(column);

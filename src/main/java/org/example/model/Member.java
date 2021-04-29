@@ -74,7 +74,14 @@ public class Member extends Model {
 	}
 
 
+	public String getMemberTypeStr(){
 
+    	TypeMember tm = new TypeMember();
+    	tm.setId(this.getId_member_type());
+    	tm.read();
+
+    	return tm.getLebelle();
+	}
 
     //
     @Override

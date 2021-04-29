@@ -22,6 +22,8 @@ public class Reservation extends Model {
     private int payment_state;
 
 
+
+
     //Constructors
     public Reservation() {
     }
@@ -97,7 +99,24 @@ public class Reservation extends Model {
         this.payment_state = payment_state;
     }
 
-    //
+    //Voiture str
+    public String getVoitureStr() {
+        Voiture voiture = new Voiture();
+        voiture.setId(this.getId_V());
+        voiture.read();
+
+        return voiture.getLa_marque() + "["+ voiture.getMatricule() +"]";
+    }
+
+    //place str
+    public String getPlaceStr() {
+        Place place = new Place();
+        place.setId(this.getId_place());
+        place.read();
+
+        return " Place " + place.getId() + " [" + place.getTypePlaceStr() + "]";
+    }
+
     @Override
     public boolean readRow(Map<String, Object> row) {
 

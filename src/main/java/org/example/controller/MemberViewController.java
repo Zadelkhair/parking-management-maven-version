@@ -18,6 +18,7 @@ import javafx.util.StringConverter;
 import org.example.model.Member;
 import org.example.model.Model;
 import org.example.model.TypeMember;
+import org.example.model.Voiture;
 
 import javax.swing.*;
 
@@ -197,6 +198,16 @@ public class MemberViewController {
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_members.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Member()).toRow().entrySet()) {
+
+            if(entry.getKey() == "id_member_type"){
+
+                column = new TableColumn("type member");
+                column.setCellValueFactory(new PropertyValueFactory<>("memberTypeStr"));
+                tablev_members.getColumns().add(column);
+
+                continue;
+            }
+
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_members.getColumns().add(column);
@@ -217,5 +228,4 @@ public class MemberViewController {
             return this.getLebelle();
         }
     }
-
 }
