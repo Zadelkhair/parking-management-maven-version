@@ -41,6 +41,14 @@ public class Entrer extends Model {
 	}
 
     //
+    public String getParkingStr(){
+
+        Parking tm = new Parking();
+        tm.setId(this.getId_parking());
+        tm.read();
+
+        return tm.getName();
+    }
     @Override
     public boolean readRow(Map<String, Object> row) {
 

@@ -143,9 +143,7 @@ public class PlaceViewController implements Initializable {
 
     public void loadParkingsData(){
         parkings = new ArrayList<>();
-
         List<Map<String,Object>> all = (new CmbParking()).getAll(true);
-
         for (Map<String,Object> row:all) {
             CmbParking p = new CmbParking();
             p.readRow(row);
