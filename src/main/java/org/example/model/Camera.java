@@ -70,6 +70,52 @@ public class Camera extends Model {
         return new Camera();
     }
 
+    public boolean create(String libelle) {
+        //create or update equipement
+        Equipement eq = new Equipement();
+        eq.setId(this.getId_equipement());
+
+        eq.setLibelle(libelle);
+
+        boolean equipement_res = false;
+        if(eq.isExist()){
+            equipement_res = eq.update();
+        }
+        else{
+            equipement_res = eq.create();
+            this.setId_equipement(eq.getId());
+            this.update();
+        }
+
+        if(!equipement_res)
+            return false;
+
+        return this.create();
+    }
+
+    public boolean update(String libelle) {
+        //create or update equipement
+        Equipement eq = new Equipement();
+        eq.setId(this.getId_equipement());
+
+        eq.setLibelle(libelle);
+
+        boolean equipement_res = false;
+        if(eq.isExist()){
+            equipement_res = eq.update();
+        }
+        else{
+            equipement_res = eq.create();
+            this.setId_equipement(eq.getId());
+            this.update();
+        }
+
+        if(!equipement_res)
+            return false;
+
+        return this.update();
+    }
+
     //Custom methods
 
 }

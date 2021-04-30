@@ -1,5 +1,8 @@
 package org.example.model;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +14,8 @@ public class CameraP extends Model {
     }
 
     //felds
-    private int id_camera;
-    private int id_place;
-
+    private int id_camera = -1;
+    private int id_place = -1;
 
     //Constructors
     public CameraP() {
@@ -35,7 +37,6 @@ public class CameraP extends Model {
         this.id_camera = id_camera;
     }
 
-
     public int getId_place() {
         return id_place;
     }
@@ -44,11 +45,6 @@ public class CameraP extends Model {
         this.id_place = id_place;
     }
 
-
-
-
-
-    //
     @Override
     public boolean readRow(Map<String, Object> row) {
 
@@ -76,6 +72,85 @@ public class CameraP extends Model {
         return new CameraP();
     }
 
-    //Custom methods
+
+
+    public String getEquipementStr() {
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+
+        if(!c.read()){
+            return "";
+        }
+
+        Equipement eq = new Equipement();
+        eq.setId(c.getId_equipement());
+        eq.read();
+
+        return eq.getLibelle();
+    }
+
+    public String getPlaceStr(){
+        Place p = new Place();
+        p.setId(this.getId_place());
+        p.read();
+
+        return p.getId() + " ["+p.getParkingStr()+"]";
+    }
+
+    public String getCameraUrl(){
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+        c.read();
+
+        return c.getUrl();
+    }
+
+    public boolean update(String libelle, String url) {
+        this.read();
+
+        //create or update camera
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+
+        c.setUrl(url);
+
+        boolean camera_rs = false;
+        if(c.isExist()){
+            camera_rs = c.update(libelle);
+        }
+        else{
+            camera_rs = c.create(libelle);
+            this.setId_camera(c.getId());
+        }
+
+        if(!camera_rs)
+            return false;
+
+        return this.update();
+    }
+
+    public boolean create(String libelle, String url) {
+        this.read();
+
+        //create or update camera
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+
+        c.setUrl(url);
+
+        boolean camera_rs = false;
+        if(c.isExist()){
+            camera_rs = c.update(libelle);
+        }
+        else{
+            camera_rs = c.create(libelle);
+            this.setId_camera(c.getId());
+        }
+
+        if(!camera_rs)
+            return false;
+
+        return this.create();
+    }
 
 }

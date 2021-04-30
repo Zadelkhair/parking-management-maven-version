@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="499.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CameraViewController" >
+<VBox prefHeight="499.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CameraViewController">
    <children>
       <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Cameras" textAlignment="CENTER">
          <font>
@@ -30,6 +30,8 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="lbl" text="Url" />
+                  <TextField id="txt_nom" fx:id="txt_url" prefHeight="25.0" prefWidth="251.0" />
                </children>
                <HBox.margin>
                   <Insets right="10.0" />
@@ -49,6 +51,11 @@
       </HBox>
       <HBox alignment="TOP_RIGHT" prefWidth="200.0">
          <children>
+            <Button fx:id="btn_camera" mnemonicParsing="false" onAction="#onClickCamera" text="camera">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#onClickSupprimer" text="Supprimer" />
             <Button mnemonicParsing="false" onAction="#onClickSauvgarder" text="Sauvgarder">
                <HBox.margin>

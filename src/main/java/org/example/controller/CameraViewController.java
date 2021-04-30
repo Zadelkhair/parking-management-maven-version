@@ -2,38 +2,28 @@ package org.example.controller;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.WebcamResolution;
+import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamPanel;
+
 import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
-import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
 import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import org.example.model.Camera;
 import org.example.model.CameraP;
 import org.example.model.Member;
 import org.example.model.Place;
@@ -44,26 +34,106 @@ public class CameraViewController implements Initializable {
     private TextField txt_libelle;
 
     @FXML
-    private ComboBox<cmbPlace> cmb_place;
+    private TextField txt_url;
+
+    @FXML
+    private ComboBox<CmbPlace> cmb_place;
 
     @FXML
     private TableView<CameraP> tablev_cameras;
-    private ArrayList<cmbPlace> places;
+    private ArrayList<CmbPlace> places;
     private ArrayList<CameraP> camerasP;
+    private CameraP selectedCameraP;
 
     @FXML
     void onClickSauvgarder(ActionEvent event) {
+        if(selectedCameraP!=null){
+            //update
+            String libelle = txt_libelle.getText();
+            String url = txt_url.getText();
 
+            CmbPlace selectedPlace = cmb_place.getSelectionModel().getSelectedItem();
+            if(selectedPlace==null)
+                return;
+
+            selectedCameraP.setId_place(selectedPlace.getId());
+
+            if(selectedCameraP.update(libelle,url)){
+                int i = places.indexOf(selectedCameraP);
+                if(i>=0){
+                    places.set(i,selectedPlace);
+                    selectedPlace = null;
+                }
+                loadTableviewCamerasData();
+                clearInputs();
+            }
+        }
+        else{
+            if(txt_url.getText().isEmpty()||txt_libelle.getText().isEmpty()||cmb_place.getSelectionModel().isEmpty())
+            {
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("entrer tous les champs ");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                //create
+                CameraP cameraP = new CameraP();
+                String libelle = txt_libelle.getText();
+                String url = txt_url.getText();
+
+                CmbPlace selectedPlace = cmb_place.getSelectionModel().getSelectedItem();
+                if(selectedPlace==null)
+                    return;
+
+                cameraP.setId_place(selectedPlace.getId());
+
+                if (cameraP.create(libelle,url)) {
+                    camerasP.add(cameraP);
+                    loadTableviewCamerasData();
+                    clearInputs();
+                }
+            }
+        }
     }
 
     @FXML
     void onClickSupprimer(ActionEvent event) {
+        int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
 
+        if (action == 0) {
+            if(selectedCameraP!=null){
+                if(selectedCameraP.delete()){
+                    camerasP.remove(selectedCameraP);
+                    loadTableviewCamerasData();
+                    selectedCameraP = null;
+                    this.clearInputs();
+                }
+
+            }
+            else {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
+
+        }
     }
 
     @FXML
     void onMouseClickTableView(MouseEvent event) {
+        Object obj = tablev_cameras.getSelectionModel().getSelectedItem();
+        if (event.getClickCount() == 2 && obj != null) {
+            if (camerasP.indexOf(obj) >= 0) {
+                selectedCameraP = (CameraP) obj;
+                txt_libelle.setText(selectedCameraP.getEquipementStr());
+                txt_url.setText(selectedCameraP.getCameraUrl());
 
+                CmbPlace place = new CmbPlace();
+                place.setId(selectedCameraP.getId_place());
+                if (place.read()) {
+                    cmb_place.getSelectionModel().select(place);
+                }
+
+            }
+        }
     }
 
     @Override
@@ -76,72 +146,112 @@ public class CameraViewController implements Initializable {
         loadTableviewCamerasData();
     }
 
-    public void loadPlaceData(){
+    public void loadPlaceData() {
         places = new ArrayList<>();
 
-        List<Map<String,Object>> all = (new cmbPlace()).getAll(true);
+        List<Map<String, Object>> all = (new CmbPlace()).getAll(true);
 
-        for (Map<String,Object> row:all) {
-            cmbPlace p = new cmbPlace();
+        for (Map<String, Object> row : all) {
+            CmbPlace p = new CmbPlace();
             p.readRow(row);
             places.add(p);
         }
     }
 
-    public void loadCamerasData(){
+    public void loadCamerasData() {
         camerasP = new ArrayList<>();
 
-        List<Map<String,Object>> all = (new CameraP()).getAll(true);
+        List<Map<String, Object>> all = (new CameraP()).getAll(true);
 
-        for (Map<String,Object> row:all) {
+        for (Map<String, Object> row : all) {
             CameraP c = new CameraP();
             c.readRow(row);
             camerasP.add(c);
         }
     }
 
-    public void loadTableviewCamerasData(){
+    public void loadTableviewCamerasData() {
         tablev_cameras.getColumns().get(0).setVisible(false);
         tablev_cameras.getColumns().get(0).setVisible(true);
         ObservableList<CameraP> camperaPObservableList = FXCollections.observableList(camerasP);
         tablev_cameras.setItems(camperaPObservableList);
     }
 
-    public void loadComboboxPlaceData(){
+    public void loadComboboxPlaceData() {
         //load cmb type members
-        ObservableList<cmbPlace> placeObservableList = FXCollections.observableList(places);
+        ObservableList<CmbPlace> placeObservableList = FXCollections.observableList(places);
         cmb_place.setItems(placeObservableList);
     }
 
-    public void loadTableviewCameraColumns(){
+    public void loadTableviewCameraColumns() {
+
         TableColumn column = new TableColumn("id");
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_cameras.getColumns().add(column);
+
+        //adding custom libelle to camera table view
+        //I create a function in CameraP model called getEquipementStr
+        //this column will get it value from this function (CameraP -> getEquipementStr())
+        column = new TableColumn("equipement");
+        column.setCellValueFactory(new PropertyValueFactory<>("equipementStr"));
+        tablev_cameras.getColumns().add(column);
+
         for (Map.Entry<String, Object> entry : (new CameraP()).toRow().entrySet()) {
 
-//            if(entry.getKey() == "id_member_type"){
-//
-//                column = new TableColumn("type member");
-//                column.setCellValueFactory(new PropertyValueFactory<>("memberTypeStr"));
-//                tablev_members.getColumns().add(column);
-//
-//                continue;
-//            }
+            if(entry.getKey() == "id_place"){
+
+                column = new TableColumn("place");
+                column.setCellValueFactory(new PropertyValueFactory<>("placeStr"));
+                tablev_cameras.getColumns().add(column);
+
+                continue;
+            }
+
+            if(entry.getKey() == "id_camera"){
+                continue;
+            }
 
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_cameras.getColumns().add(column);
         }
+
+        //adding custom url to camera table view
+        //I create a function in CameraP model called getCameraUrl
+        //this column will get it value from this function (CameraP -> getCameraUrl())
+        column = new TableColumn("url");
+        column.setCellValueFactory(new PropertyValueFactory<>("cameraUrl"));
+        tablev_cameras.getColumns().add(column);
+
     }
 
     private void clearInputs() {
         txt_libelle.clear();
+        txt_url.clear();
         cmb_place.getSelectionModel().clearSelection();
     }
 
-    public void dispCam(String name,String url){
+    static {
+        Webcam.setDriver(new IpCamDriver());
+    }
+
+    @FXML
+    public void onClickCamera(ActionEvent event) {
+
+        if(this.selectedCameraP == null){
+            return;
+        }
+
+        dispCam(selectedCameraP.getEquipementStr(), selectedCameraP.getCameraUrl());
+
+    }
+
+    public void dispCam(String name, String url) {
+
         try {
-            IpCamDeviceRegistry.register(name, url, IpCamMode.PUSH);
+            if(!IpCamDeviceRegistry.isRegistered(url)){
+                IpCamDeviceRegistry.register(name, url, IpCamMode.PUSH);
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -160,10 +270,11 @@ public class CameraViewController implements Initializable {
         window.setVisible(true);
     }
 
-    public class cmbPlace extends Place{
+    public class CmbPlace extends Place {
         @Override
         public String toString() {
-            return this.getId()+" ["+getParkingStr()+"]";
+            return this.getId() + " [" + getParkingStr() + "]";
         }
     }
+
 }
