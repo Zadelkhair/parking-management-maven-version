@@ -56,7 +56,7 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView id="tablev_entree" fx:id="tablev_entree" maxHeight="1.7976931348623157E308" onMouseClicked="#onMouseClickTableViewS" prefHeight="350.0" prefWidth="357.0">
+                        <TableView id="tablev_entree" fx:id="tablev_entree" maxHeight="1.7976931348623157E308" onMouseClicked="#onMouseClickTableViewE" prefHeight="350.0" prefWidth="357.0">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
