@@ -182,6 +182,7 @@ public class SortieEntreeViewController implements Initializable {
                 if(selectedSortie.delete()){
                     sorties.remove(selectedSortie);
                     loadTableviewSortieData();
+
                     selectedSortie = null;
                     this.clearInputs();
 
