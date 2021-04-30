@@ -1,4 +1,6 @@
 module org.example {
+    requires javafx.base;
+    requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -6,7 +8,8 @@ module org.example {
     requires webcam.capture;
     requires java.desktop;
     requires javafx.swing;
-
+    requires webcam.capture.driver.ipcam;
+    requires javafx.web;
 
     opens org.example to javafx.fxml;
     exports org.example;
