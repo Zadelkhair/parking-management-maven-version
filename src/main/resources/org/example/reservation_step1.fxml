@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <ScrollPane fitToWidth="true" prefWidth="794.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReservationStep1ViewController">
    <content>
       <AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefWidth="347.0">
@@ -144,7 +143,7 @@
                   </HBox>
                   <HBox alignment="TOP_RIGHT" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btn_annuler" mnemonicParsing="false" onMouseClicked="#onClickSupprimer" text="Annuler" />
+                        <Button fx:id="btn_annuler" mnemonicParsing="false" onAction="#onClickAnnuler" onMouseClicked="#onClickSupprimer" text="Annuler" />
                         <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickSuivant" text="Suivant">
                            <HBox.margin>
                               <Insets left="10.0" />

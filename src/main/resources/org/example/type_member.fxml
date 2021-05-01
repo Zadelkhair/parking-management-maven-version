@@ -47,12 +47,17 @@
                   <TableView id="table_tymembers" fx:id="tablev_tymembre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onMouseClickTableView" prefHeight="353.0" prefWidth="525.0" />
                   <VBox prefHeight="269.0" prefWidth="260.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="40.0" prefWidth="167.0" text="Supprimer">
+                        <Button mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="49.0" prefWidth="124.0" text="Supprimer">
                            <VBox.margin>
                               <Insets bottom="10.0" top="50.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onClickSauvgarder" prefHeight="38.0" prefWidth="167.0" text="Sauvgarder" />
+                        <Button mnemonicParsing="false" onAction="#onClickSauvgarder" prefHeight="54.0" prefWidth="124.0" text="Sauvgarder" />
+                        <Button fx:id="Annuler" mnemonicParsing="false" onAction="#onClickAnnuler" prefHeight="49.0" prefWidth="124.0" text="Annuler">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                </children>

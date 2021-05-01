@@ -60,7 +60,7 @@ public class SortieEntreeViewController implements Initializable {
                     selectedEntrer = null;
                 }
                 loadTableviewEntrerData();
-                clearInputs();
+                clearInputsE();
             }
         }
         else{
@@ -83,7 +83,7 @@ public class SortieEntreeViewController implements Initializable {
                 if (entre.create()) {
                     entrers.add(entre);
                     loadTableviewEntrerData();
-                    clearInputs();
+                    clearInputsE();
                 }
             }
         }
@@ -107,7 +107,7 @@ public class SortieEntreeViewController implements Initializable {
                     selectedSortie = null;
                 }
                 loadTableviewSortieData();
-                clearInputs();
+                clearInputsS();
             }
         }
         else{
@@ -130,7 +130,7 @@ public class SortieEntreeViewController implements Initializable {
                 if (sortie.create()) {
                     sorties.add(sortie);
                     loadTableviewSortieData();
-                    clearInputs();
+                    clearInputsS();
                 }
             }
         }
@@ -172,6 +172,15 @@ public class SortieEntreeViewController implements Initializable {
 
             }
         }
+    } @FXML
+    void onClickAnnulerS(ActionEvent event) {
+        selectedSortie = null;
+        this.clearInputsS();
+    }
+    @FXML
+    void onClickAnnulerE(ActionEvent event) {
+        selectedEntrer = null;
+        this.clearInputsE();
     }
     @FXML
     void onClickSupprimerS(ActionEvent event) {
@@ -184,7 +193,7 @@ public class SortieEntreeViewController implements Initializable {
                     loadTableviewSortieData();
 
                     selectedSortie = null;
-                    this.clearInputs();
+                    this.clearInputsS();
 
                 }
 
@@ -204,7 +213,7 @@ public class SortieEntreeViewController implements Initializable {
                     entrers.remove(selectedEntrer);
                     loadTableviewEntrerData();
                     selectedEntrer = null;
-                    this.clearInputs();
+                    this.clearInputsE();
                 }
 
             }
@@ -320,11 +329,13 @@ public class SortieEntreeViewController implements Initializable {
             return this.getName();
         }
     }
-    private void clearInputs() {
-        txt_lib_sortie.clear();
+    private void clearInputsE() {
         txt_lib_entre.clear();
-        cmb_park_so.getSelectionModel().clearSelection();
-        cmb_park_en.getSelectionModel().clearSelection();
-    }
+        cmb_park_en.getSelectionModel().select(null);
 
+    }
+    private void clearInputsS() {
+        txt_lib_sortie.clear();
+        cmb_park_so.getSelectionModel().select(null);
+    }
 }

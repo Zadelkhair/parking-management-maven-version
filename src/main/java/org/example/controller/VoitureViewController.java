@@ -112,6 +112,11 @@ public class VoitureViewController implements Initializable {
         {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
         }
     }
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedVoiture = null;
+        this.clearInputs();
+    }
 
     @FXML
     void onMouseClickTableView(MouseEvent event) {

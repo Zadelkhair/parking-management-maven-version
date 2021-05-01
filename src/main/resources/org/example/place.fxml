@@ -64,6 +64,11 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="Annuler" mnemonicParsing="false" onAction="#onClickAnnuler" prefHeight="31.0" prefWidth="134.0" text="Annuler">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
