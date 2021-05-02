@@ -69,7 +69,11 @@ public class RolesViewController implements Initializable {
             }
         }
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedRoles = null;
+        this.clearInputs();
+    }
     @FXML
     void onClickSupprimer(ActionEvent event) {
         int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");

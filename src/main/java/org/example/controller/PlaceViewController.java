@@ -86,7 +86,11 @@ public class PlaceViewController implements Initializable {
             }
         }
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedPlace = null;
+        this.clearInputs();
+    }
     @FXML
     void onClickSupprimer(ActionEvent event) {
         int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");

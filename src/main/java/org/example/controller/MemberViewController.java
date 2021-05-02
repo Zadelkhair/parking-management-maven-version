@@ -124,7 +124,11 @@ public class MemberViewController {
 
         }
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedMember = null;
+        this.clearInputs();
+    }
     public void onMouseClickTableView(MouseEvent mouseEvent) {
         Object obj = tablev_members.getSelectionModel().getSelectedItem();
         if (mouseEvent.getClickCount() == 2 && obj != null) {

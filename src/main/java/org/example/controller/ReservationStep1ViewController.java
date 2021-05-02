@@ -67,6 +67,7 @@ public class ReservationStep1ViewController implements Initializable {
     private ArrayList<CmbMember> members;
     private CmbVoiture selectedVoiture;
 
+
     @FXML
     void onClickSuivant(MouseEvent event) {
 
@@ -80,7 +81,25 @@ public class ReservationStep1ViewController implements Initializable {
 
         App.viewController.navigateTo("reservation_step2.fxml", null, data);
     }
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
 
+        this.clearInputs();
+
+    }
+    private void clearInputs() {
+        txt_matricule.clear();
+        txt_couleur.clear();
+        txt_nom.clear();
+        txt_prenom.clear();
+        txt_marque.clear();
+        date_d.getEditor().clear();
+        date_f.getEditor().clear();
+        cmb_type_members.getSelectionModel().clearSelection();
+        cmb_voiture.getSelectionModel().clearSelection();
+
+
+    }
     @FXML
     void onClickSupprimer(MouseEvent event) {
 

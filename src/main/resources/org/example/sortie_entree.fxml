@@ -51,6 +51,7 @@
                                  </HBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#onClickSauvgarderE" prefHeight="25.0" prefWidth="116.0" text="Sauvgarder" />
+                              <Button fx:id="AnnulerE" mnemonicParsing="false" onAction="#onClickAnnulerE" prefHeight="25.0" prefWidth="107.0" text="Annuler" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -89,6 +90,7 @@
                                  </HBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#onClickSauvgarderS" prefHeight="25.0" prefWidth="116.0" text="Sauvgarder" />
+                              <Button fx:id="AnnulerS" mnemonicParsing="false" onAction="#onClickAnnulerS" prefHeight="25.0" prefWidth="108.0" text="Annuler" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />

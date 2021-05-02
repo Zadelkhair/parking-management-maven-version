@@ -60,10 +60,15 @@
                   </VBox>
                   <VBox prefHeight="83.0" prefWidth="165.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="46.0" prefWidth="146.0" text="Supprimer" />
-                        <Button mnemonicParsing="false" onAction="#onClickSauvgarder" prefHeight="46.0" prefWidth="146.0" text="Sauvgarder">
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickSupprimer" prefHeight="44.0" prefWidth="149.0" text="Supprimer" />
+                        <Button mnemonicParsing="false" onAction="#onClickSauvgarder" prefHeight="42.0" prefWidth="144.0" text="Sauvgarder">
                            <VBox.margin>
                               <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="Annuler" mnemonicParsing="false" onAction="#onClickAnnuler" prefHeight="20.0" prefWidth="160.0" text="Annuler">
+                           <VBox.margin>
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
                      </children>

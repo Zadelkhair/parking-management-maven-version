@@ -179,6 +179,11 @@ public class UsersViewController  implements Initializable {
             tablev_users.getColumns().add(column);
         }
     }
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedUser = null;
+        this.clearInputs();
+    }
     private void clearInputs() {
         txt_pass.clear();
         txt_user.clear();
