@@ -10,18 +10,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.model.Camera;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CarDetectionViewController implements IReceiveData , Initializable {
+public class CarDetectionViewController implements IReceiveData, Initializable {
+
+    private Camera camera;
+
+    @FXML
+    private TextField txt_img;
+
+    @FXML
+    private CheckBox use_img;
 
     private int id_camera;
     private String type_port;
@@ -44,7 +58,7 @@ public class CarDetectionViewController implements IReceiveData , Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        txt_img.setText(System.getProperty("user.dir") + "/scripts/plate_detection/image2.jpg");
     }
 
     @Override
@@ -79,13 +93,13 @@ public class CarDetectionViewController implements IReceiveData , Initializable 
 
     @FXML
     void onClickCamera(ActionEvent event) {
-        Camera c = new Camera();
-        c.setId(getId_camera());
+        camera = new Camera();
+        camera.setId(getId_camera());
 
-        if(!c.read())
+        if (!camera.read())
             return;
 
-        dispCam(c.getEquipementStr(), c.getUrl());
+        dispCam(camera.getEquipementStr(), camera.getUrl());
     }
 
     @FXML
@@ -96,6 +110,85 @@ public class CarDetectionViewController implements IReceiveData , Initializable 
     @FXML
     void onClickDetecter(ActionEvent event) {
 
+        String s = null;
+        String img_url = txt_img.getText();
+        String out_file = "";
+        String out_plate = "";
+
+        txt_script_out.setText("Wait ...");
+
+        img.setImage(new Image("file:///" + img_url));
+
+        try {
+
+            // run the Unix "ps -ef" command
+            // using the Runtime exec method:
+            Process p;
+            if (use_img.isSelected()) {
+                System.out.println("py " + System.getProperty("user.dir") + "/scripts/plate_detection/main.py " + img_url + " img");
+                p = Runtime.getRuntime().exec("py " + System.getProperty("user.dir") + "/scripts/plate_detection/main.py " + img_url + " img");
+
+            } else {
+
+                if (camera == null)
+                    return;
+
+                if (camera.getUrl().length() <= 0)
+                    return;
+
+                p = Runtime.getRuntime().exec("py " + System.getProperty("user.dir") + "/scripts/plate_detection/main.py " + camera.getUrl() + " ip");
+            }
+
+            BufferedReader stdInput = new BufferedReader(new
+                    InputStreamReader(p.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new
+                    InputStreamReader(p.getErrorStream()));
+
+            txt_script_out.clear();
+
+            // read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            txt_script_out.appendText("Here is the standard output of the command:\n\n");
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+                txt_script_out.appendText(s + "\n");
+
+                if (s.indexOf("out_file") != -1) {
+                    out_file = s.split(":")[1];
+                    System.out.println("file:///" + System.getProperty("user.dir") + "/scripts/plate_detection/" + out_file);
+
+                    String out_file_path = "file:///" + System.getProperty("user.dir") + "/scripts/plate_detection/" + out_file;
+                    File f = new File(out_file_path);
+                    if (f.exists() && !f.isDirectory()) {
+                        img.setImage(new Image(out_file_path));
+                    }
+                }
+
+                if (s.indexOf("out_plate") != -1) {
+                    out_plate = s.split(":")[1];
+                    System.out.println(out_plate);
+                    txt_plate.setText(out_plate);
+                }
+
+            }
+
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            txt_script_out.appendText("Here is the standard error of the command (if any):\n\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+                txt_script_out.appendText(s + "\n");
+            }
+
+            //System.exit(0);
+
+        } catch (IOException e) {
+            System.out.println("exception happened - here's what I know: ");
+            txt_script_out.appendText("exception happened - here's what I know: \n");
+            e.printStackTrace();
+            //System.exit(-1);
+        }
     }
 
     static {
@@ -105,19 +198,19 @@ public class CarDetectionViewController implements IReceiveData , Initializable 
     public void dispCam(String name, String url) {
 
         try {
-            if(!IpCamDeviceRegistry.isRegistered(name)){
+            if (!IpCamDeviceRegistry.isRegistered(name)) {
                 IpCamDeviceRegistry.register(name, url, IpCamMode.PUSH);
             }
             int index = 0;
-            for (IpCamDevice ip:IpCamDeviceRegistry.getIpCameras()) {
-                System.out.println(ip.getName()+" "+name);
-                if(ip.getName().equals(name)){
+            for (IpCamDevice ip : IpCamDeviceRegistry.getIpCameras()) {
+                System.out.println(ip.getName() + " " + name);
+                if (ip.getName().equals(name)) {
                     break;
                 }
                 index++;
             }
 
-            if(index>=IpCamDeviceRegistry.getIpCameras().size())
+            if (index >= IpCamDeviceRegistry.getIpCameras().size())
                 return;
 
             WebcamPanel panel = new WebcamPanel(Webcam.getWebcams().get(index));
@@ -136,6 +229,5 @@ public class CarDetectionViewController implements IReceiveData , Initializable 
             e.printStackTrace();
         }
     }
-
 
 }
