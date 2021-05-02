@@ -117,5 +117,13 @@ public class Camera extends Model {
     }
 
     //Custom methods
+    public String getEquipementStr(){
+
+        Equipement eq = new Equipement();
+        eq.setId(this.getId_equipement());
+        eq.read();
+
+        return eq.getLibelle();
+    }
 
 }

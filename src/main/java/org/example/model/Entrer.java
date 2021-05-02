@@ -13,15 +13,17 @@ public class Entrer extends Model {
 
     //felds
 	private String libelle;
-	private int id_parking;
+    private int id_parking;
+    private int id_camera;
 
     //Constructors
     public Entrer(){}
 
-    public Entrer(int id,String libelle,int id_parking) {
+    public Entrer(int id,String libelle,int id_parking,int id_camera) {
         this.id = id;
 		this.libelle = libelle;
-		this.id_parking = id_parking;
+        this.id_parking = id_parking;
+        this.id_camera = id_camera;
     }
 
     //Geter and seters
@@ -40,6 +42,14 @@ public class Entrer extends Model {
 	   this.id_parking = id_parking;
 	}
 
+    public int getId_camera() {
+        return id_camera;
+    }
+
+    public void setId_camera(int id_camera) {
+        this.id_camera = id_camera;
+    }
+
     //
     public String getParkingStr(){
 
@@ -54,7 +64,8 @@ public class Entrer extends Model {
 
         this.id = (int) row.get("id");
 		this.libelle = (String) row.get("libelle");
-		this.id_parking = (int) row.get("id_parking");
+        this.id_parking = (int) row.get("id_parking");
+        this.id_camera = (int) row.get("id_camera");
 
 
         return true;
@@ -65,7 +76,8 @@ public class Entrer extends Model {
 
         Map<String,Object> row = new HashMap<>();
 		row.put("libelle",libelle);
-		row.put("id_parking",id_parking);
+        row.put("id_parking",id_parking);
+        row.put("id_camera",id_camera);
 
 
         return row;
@@ -77,5 +89,20 @@ public class Entrer extends Model {
     }
 
     //Custom methods
+    public String getCameraStr(){
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+        c.read();
+
+        return c.getEquipementStr() + "(" + c.getUrl() +")";
+    }
+
+    public String getCameraUrlStr(){
+        Camera c = new Camera();
+        c.setId(this.getId_camera());
+        c.read();
+
+        return c.getUrl();
+    }
 
 }

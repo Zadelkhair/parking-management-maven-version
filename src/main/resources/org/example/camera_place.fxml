@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="499.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CameraViewController">
+<VBox prefHeight="499.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CameraPlaceViewController">
    <children>
       <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Cameras" textAlignment="CENTER">
          <font>
@@ -29,15 +30,21 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="lbl" text="Url" />
+                  <TextField id="txt_nom" fx:id="txt_url" prefHeight="25.0" prefWidth="251.0" />
                </children>
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="58.0" prefWidth="273.0">
+            <VBox prefHeight="58.0" prefWidth="268.0">
                <children>
-                  <Label fx:id="lbl1" text="Url" />
-                  <TextField id="txt_nom" fx:id="txt_url" prefHeight="25.0" prefWidth="251.0" />
+                  <Label text="Place" />
+                  <ComboBox id="cmb_type_members" fx:id="cmb_place" prefHeight="25.0" prefWidth="265.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
                </children>
             </VBox>
          </children>

@@ -60,8 +60,8 @@ public class SettingViewController {
             case "Type member":
                 App.viewController.navigateTo("type_member.fxml");
                 return;
-            case "Cameras":
-                App.viewController.navigateTo("camera.fxml");
+            case "Cameras place":
+                App.viewController.navigateTo("camera_place.fxml");
                 return;
             case "Guichets":
                 App.viewController.navigateTo("guichet.fxml");
