@@ -18,6 +18,7 @@ public class Payment {
     @FXML
     private TextField txt_prix;
 
+
     @FXML
     private TextField txt_num_place;
 
