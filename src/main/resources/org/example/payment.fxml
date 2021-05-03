@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefHeight="600.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SortieEntreeViewController">
    <children>
@@ -61,17 +61,9 @@
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Date d'entrée" />
-                        <TextField id="txt_lib_entre" fx:id="txt_datee" prefHeight="25.0" prefWidth="202.0">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </TextField>
+                        <DatePicker fx:id="dateE" prefHeight="25.0" prefWidth="637.0" />
                         <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Date Sortie" />
-                        <TextField id="txt_lib_entre" fx:id="txt_dates">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </TextField>
+                        <DatePicker fx:id="dateS" prefHeight="25.0" prefWidth="637.0" />
                         <Label prefHeight="17.0" prefWidth="313.0" text="prix" />
                         <TextField id="txt_lib_entre" fx:id="txt_prix" />
                         <HBox prefHeight="38.0" prefWidth="600.0" style="-fx-alignment: center;">

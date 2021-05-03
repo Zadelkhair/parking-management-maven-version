@@ -3,6 +3,7 @@ package org.example.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class Payment {
@@ -23,10 +24,10 @@ public class Payment {
     private TextField txt_num_place;
 
     @FXML
-    private TextField txt_datee;
+    private DatePicker dateE;
 
     @FXML
-    private TextField txt_dates;
+    private DatePicker dateS;
 
     @FXML
     private Button Submit;
