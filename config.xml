@@ -12,10 +12,10 @@
     <entry key="DB_PASSWORD"></entry>
     <!---->
     <!-- Database configuration -->
-<!--    <entry key="DB_URL">jdbc:sql11.freemysqlhosting.net</entry>-->
-<!--    <entry key="DB_NAME">sql11403062</entry>-->
-<!--    <entry key="DB_USER">sql11403062</entry>-->
-<!--    <entry key="DB_PASSWORD">TKpWpK9L8F</entry>-->
+    <!--<entry key="DB_URL">jdbc:sql11.freemysqlhosting.net</entry>-->
+    <!--<entry key="DB_NAME">sql11403062</entry>-->
+    <!--<entry key="DB_USER">sql11403062</entry>-->
+    <!--<entry key="DB_PASSWORD">TKpWpK9L8F</entry>-->
     <!---->
 
 </properties>
