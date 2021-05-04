@@ -214,6 +214,11 @@ public class PlaceViewController implements Initializable {
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_place.getColumns().add(column);
         }
+
+        column = new TableColumn("is reserved");
+        column.setCellValueFactory(new PropertyValueFactory<>("reserverd"));
+        tablev_place.getColumns().add(column);
+
     }
 
     private void clearInputs() {
