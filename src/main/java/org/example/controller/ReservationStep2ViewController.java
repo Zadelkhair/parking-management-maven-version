@@ -29,6 +29,9 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
     private Label lbl_place;
 
     @FXML
+    private Label lbl_selected_place;
+
+    @FXML
     private FlowPane flowpanel;
 
     private int voiture_id = -1;
@@ -82,6 +85,10 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                             reservation.setId_place(positionCardViewController.getNum());
                             reservation.setPayment_state(0);
                             reservation.setState(0);
+
+                            lbl_selected_place.setText("Selected place ("+positionCardViewController.getNum()+")");
+
+
                         }
                     }
                 });
@@ -112,6 +119,7 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
 
         System.out.println(reservation.toString());
         reservation.create();
+        App.viewController.navigateTo("historique.fxml");
 
     }
 

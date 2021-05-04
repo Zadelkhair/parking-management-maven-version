@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import org.example.App;
 import org.example.model.*;
 
 import java.net.URL;
@@ -60,7 +61,7 @@ public class PaymentViewController implements IReceiveData , Initializable {
 
     @FXML
     void onClickAnnuler(ActionEvent event) {
-
+        App.viewController.navigateTo("historique.fxml");
     }
 
     @FXML
@@ -68,6 +69,8 @@ public class PaymentViewController implements IReceiveData , Initializable {
         reservation.setPayment_state(1);
         reservation.setState(1);
         reservation.update();
+
+        App.viewController.navigateTo("historique.fxml");
     }
 
     @Override

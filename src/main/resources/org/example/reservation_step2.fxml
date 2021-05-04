@@ -39,6 +39,11 @@
                   </ScrollPane>
                   <HBox alignment="TOP_RIGHT" prefWidth="200.0">
                      <children>
+                        <Label fx:id="lbl_selected_place" maxWidth="1.7976931348623157E308" text="Select a place" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
                         <Button fx:id="btn_suiv" mnemonicParsing="false" onMouseClicked="#onClickConfirmer" text="Confirmer">
                            <HBox.margin>
                               <Insets left="10.0" />

@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.App;
 import org.example.model.Camera;
+import org.example.model.Voiture;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -67,11 +68,9 @@ public class CarDetectionViewController implements IReceiveData, Initializable {
     public void setData(Map<String, Object> data) {
         if (data.containsKey("id_camera")) {
             this.setId_camera((Integer) data.get("id_camera"));
-            return;
         }
         if (data.containsKey("type_port")) {
             this.setType_port((String) data.get("type_port"));
-            return;
         }
     }
 
@@ -107,9 +106,24 @@ public class CarDetectionViewController implements IReceiveData, Initializable {
     @FXML
     void onClickConfirmer(ActionEvent event) {
         if (txt_plate.getText().length() > 0) {
-            Map<String, Object> data = new HashMap<>();
-            data.put("matricule", txt_plate.getText());
-            App.viewController.navigateTo("payment.fxml", null, data);
+
+            if (type_port.equals("sortie")) {
+                Map<String, Object> data = new HashMap<>();
+                data.put("matricule", txt_plate.getText());
+                App.viewController.navigateTo("payment.fxml", null, data);
+            }
+            System.out.println(type_port);
+
+            if (type_port.equals("entrer")) {
+                Map<String, Object> data = new HashMap<>();
+                Voiture v = new Voiture();
+                v.setMatricule(txt_plate.getText());
+                if (v.readByMatricule()) {
+                    data.put("voiture_id", v.getId());
+                    App.viewController.navigateTo("reservation_step2.fxml", null, data);
+                }
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Selectionne une sortie pour la detection la sortie d'un vehicule");
         }
