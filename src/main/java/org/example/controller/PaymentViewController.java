@@ -51,7 +51,6 @@ public class PaymentViewController implements IReceiveData , Initializable {
     @FXML
     private Button Annuler;
 
-    private String matricule;
     private Voiture voiture;
     private TypeMember type_membre;
     private Member membre;
@@ -78,19 +77,22 @@ public class PaymentViewController implements IReceiveData , Initializable {
     @Override
     public void setData(Map<String, Object> data) {
         if (data.containsKey("matricule")) {
-            this.matricule = (String) data.get("matricule");
+            String matricule = (String) data.get("matricule");
+            onReceiveMatricule(matricule);
+            return;
+        }
 
-            onReceiveMatricule();
-
+        if(data.containsKey("id_reservation")){
+            int id_reservation = (int) data.get("id_reservation");
+            onReceiveReservation(id_reservation);
             return;
         }
     }
 
-    private void onReceiveMatricule() {
-
+    private void onReceiveMatricule(String matricule) {
 
         Voiture v = new Voiture();
-        v.setMatricule(this.matricule);
+        v.setMatricule(matricule);
         if(!v.readByMatricule()){
             return;
         }
@@ -145,6 +147,58 @@ public class PaymentViewController implements IReceiveData , Initializable {
 
     }
 
+    private void onReceiveReservation(int id_reservation) {
+
+        Reservation r = new Reservation();
+        r.setId(id_reservation);
+        if(!r.read()){
+            return;
+        }
+
+        Voiture v = new Voiture();
+        v.setId(r.getId_V());
+        if(!v.read()){
+            return;
+        }
+
+        Member m = new Member();
+        m.setId(v.getId_m());
+        if(!m.read()){
+            return;
+        }
+
+        TypeMember tm = new TypeMember();
+        tm.setId(m.getId_member_type());
+        if(!tm.read()){
+            return;
+        }
+
+        Place p = new Place();
+        p.setId(r.getId_place());
+
+        if(!p.read()){
+            return;
+        }
+
+        Parking pk = new Parking();
+        pk.setId(p.getId_parking());
+
+        if(!pk.read()){
+            return;
+        }
+
+        this.voiture = v;
+        this.membre = m;
+        this.type_membre = tm;
+        this.reservation = r;
+        this.place = p;
+        this.parking = pk;
+
+        this.loadForm();
+
+    }
+
+
     private void loadForm() {
 
         if(voiture == null){
@@ -187,7 +241,6 @@ public class PaymentViewController implements IReceiveData , Initializable {
         txt_prix.setText(reservation.getPrix()+"");
 
     }
-
 
     public float price(){
 

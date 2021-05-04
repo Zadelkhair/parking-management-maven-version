@@ -3,6 +3,7 @@ package org.example.model;
 import org.example.App;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,5 +180,36 @@ public class Reservation extends Model {
             }
         }
         return false;
+    }
+
+    public List<Map<String, Object>> getAllBetween(boolean forceload, LocalDateTime dateTimeD, LocalDateTime dateTimeF) {
+        if(this.all == null || forceload){
+
+            this.all = new ArrayList<>();
+
+            List<Object> params = new ArrayList<>();
+            params.add(dateTimeD);
+            params.add(dateTimeF);
+            params.add(dateTimeD);
+
+            this.all = App.db.executeQuery("" +
+                    " SELECT * FROM reservations " +
+                    " WHERE " +
+                    " ( date_debut>=? " +
+                    " AND date_fin<=?" +
+                    " AND state = 1" +
+                    " )" +
+                    " OR" +
+                    " (date_debut>=? " +
+                    " AND state = 0" +
+                    " )" +
+                    "",params);
+
+            System.out.println("SELECT * FROM "+tableName()+" WHERE date_debut<=? AND date_fin>=?;");
+            System.out.println(dateTimeD.toString());
+            System.out.println(dateTimeF.toString());
+        }
+
+        return this.all;
     }
 }

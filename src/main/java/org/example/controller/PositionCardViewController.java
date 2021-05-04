@@ -26,6 +26,8 @@ public class PositionCardViewController implements Initializable {
 
     public void setDisponible(boolean disponible) {
 
+        lbl_num_place.setDisable(disponible);
+
         if(disponible){
             if (this.lbl_num_place.getStyleClass().contains("place-reserver")) {
                 this.lbl_num_place.getStyleClass().remove("place-reserver");
