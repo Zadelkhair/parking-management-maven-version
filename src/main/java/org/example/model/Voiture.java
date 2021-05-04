@@ -123,7 +123,11 @@ public class Voiture extends Model {
     }
 
     public boolean readByMatricule() {
-        List<Map<String, Object>> rows = App.db.executeQuery("SELECT * FROM "+tableName()+" WHERE matricule="+getMatricule()+";");
+
+        List<Object> data = new ArrayList<>();
+        data.add(getMatricule());
+
+        List<Map<String, Object>> rows = App.db.executeQuery("SELECT * FROM "+tableName()+" WHERE matricule=?;",data);
         if(rows != null){
             if(rows.size()==1){
                 readRow(rows.get(0));
