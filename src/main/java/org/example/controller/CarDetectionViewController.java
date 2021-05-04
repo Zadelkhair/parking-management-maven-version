@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.example.App;
 import org.example.model.Camera;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -104,7 +106,13 @@ public class CarDetectionViewController implements IReceiveData, Initializable {
 
     @FXML
     void onClickConfirmer(ActionEvent event) {
-
+        if (txt_plate.getText().length() > 0) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("matricule", txt_plate.getText());
+            App.viewController.navigateTo("payment.fxml", null, data);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selectionne une sortie pour la detection la sortie d'un vehicule");
+        }
     }
 
     @FXML

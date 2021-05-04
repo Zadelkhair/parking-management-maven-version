@@ -110,4 +110,15 @@ public class User extends Model {
         return (long)obj>0;
     }
 
+    public boolean readByUtilisateur() {
+        List<Map<String, Object>> rows = App.db.executeQuery("SELECT * FROM "+tableName()+" WHERE utilisateur='"+getUtilisateur()+"' limit 1;");
+
+        if(rows != null){
+            if(rows.size()==1){
+                readRow(rows.get(0));
+                return true;
+            }
+        }
+        return false;
+    }
 }

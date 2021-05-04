@@ -16,15 +16,23 @@ import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
 
+    @FXML
+    private TextField user;
+
+    @FXML
+    private TextField password;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     public void login(MouseEvent mouseEvent) {
 
         AuthentificationController authentificationController = new AuthentificationController();
-        boolean login = authentificationController.login("admin","admin");
+        boolean login = authentificationController.login(user.getText(),password.getText());
+
+        System.out.println(login);
 
         if(login){
             User user = authentificationController.getUser();

@@ -21,8 +21,13 @@ public class AuthentificationController {
     public boolean login(String utilisateur,String motdepasse){
 
         this.user = new User(-1,utilisateur,motdepasse);
-        return user.checkUsernameAndPassword();
 
+        if(!user.checkUsernameAndPassword())
+            return false;
+
+        this.user.readByUtilisateur();
+
+        return true;
     }
 
 }

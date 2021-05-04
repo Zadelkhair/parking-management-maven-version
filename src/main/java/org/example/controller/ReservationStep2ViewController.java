@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -69,13 +70,16 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                 root.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        Label label = (Label) mouseEvent.getTarget();
-                        if (label != null) {
+
+                        AnchorPane place = (AnchorPane) mouseEvent.getSource();
+                        FXMLLoader place_fxmlLoader = (FXMLLoader) place.getUserData();
+                        PositionCardViewController positionCardViewController = (PositionCardViewController) place_fxmlLoader.getController();
+
+                        if (positionCardViewController != null) {
                             reservation = new Reservation();
                             reservation.setDate_debut(LocalDateTime.now());
-                            reservation.setDate_debut(LocalDateTime.now().plusHours(1));
                             reservation.setId_V(voiture_id);
-                            reservation.setId_place(Integer.parseInt(label.getText()));
+                            reservation.setId_place(positionCardViewController.getNum());
                             reservation.setPayment_state(0);
                             reservation.setState(0);
                         }
@@ -110,5 +114,6 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
         reservation.create();
 
     }
+
 
 }

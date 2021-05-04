@@ -4,43 +4,45 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefHeight="600.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SortieEntreeViewController">
-   <children>
-      <VBox prefHeight="200.0" prefWidth="885.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<ScrollPane fitToWidth="true" prefWidth="794.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.PaymentViewController">
+<content>
+      <AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefHeight="600.0" prefWidth="890.0">
          <children>
-            <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Payment" textAlignment="CENTER">
-               <font>
-                  <Font size="34.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <HBox prefHeight="512.0" prefWidth="760.0">
+            <VBox prefHeight="200.0" prefWidth="885.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox prefHeight="490.0" prefWidth="600.0">
+                  <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Payment" textAlignment="CENTER">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Nom Prenom " />
-                        <TextField id="txt_lib_entre" fx:id="txt_nomprenom" prefHeight="25.0" prefWidth="612.0">
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: ;" text="Nom Prenom " />
+                        <TextField id="txt_lib_entre" fx:id="txt_nomprenom" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <VBox.margin>
-                              <Insets bottom="5.0" top="2.0" />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Type de membership" />
                         <TextField id="txt_lib_entre" fx:id="txt_typem" prefWidth="600.0">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="2.0" />
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="313.0" text="Matricule">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <TextField id="txt_lib_entre" fx:id="txt_matricule">
@@ -48,8 +50,8 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label prefHeight="17.0" prefWidth="313.0" text="prix" />
-                        <TextField id="txt_lib_entre" fx:id="txt_prix">
+                        <Label prefHeight="17.0" prefWidth="313.0" text="parking" />
+                        <TextField id="txt_lib_entre" fx:id="txt_parking">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -61,10 +63,26 @@
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Date d'entrée" />
-                        <DatePicker fx:id="dateE" prefHeight="25.0" prefWidth="637.0" />
+                        <DatePicker fx:id="dateE" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="601.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <Text accessibleText="time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                        <TextField fx:id="txt_timee">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
                         <Label prefHeight="17.0" prefWidth="315.0" style="-fx-alignment: ;" text="Date Sortie" />
-                        <DatePicker fx:id="dateS" prefHeight="25.0" prefWidth="637.0" />
-                        <Label prefHeight="17.0" prefWidth="313.0" text="prix" />
+                        <DatePicker fx:id="dateS" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="637.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <Text accessibleText="time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                        <TextField fx:id="txt_times" />
+                        <Label prefHeight="17.0" prefWidth="313.0" text="prix (en DH)" />
                         <TextField id="txt_lib_entre" fx:id="txt_prix" />
                         <HBox prefHeight="38.0" prefWidth="600.0" style="-fx-alignment: center;">
                            <children>
@@ -80,16 +98,13 @@
                            </VBox.margin>
                         </HBox>
                      </children>
-                     <HBox.margin>
-                        <Insets left="120.0" />
-                     </HBox.margin>
                   </VBox>
                </children>
-            </HBox>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </content>
+</ScrollPane>

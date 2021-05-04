@@ -1,7 +1,10 @@
 package org.example.model;
 
+import org.example.App;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,8 +23,6 @@ public class Reservation extends Model {
     private int id_place;
     private int state;
     private int payment_state;
-
-
 
 
     //Constructors
@@ -65,7 +66,6 @@ public class Reservation extends Model {
         this.prix = prix;
     }
 
-
     public int getId_V() {
         return id_V;
     }
@@ -73,7 +73,6 @@ public class Reservation extends Model {
     public void setId_V(int id_V) {
         this.id_V = id_V;
     }
-
 
     public int getId_place() {
         return id_place;
@@ -168,5 +167,17 @@ public class Reservation extends Model {
                 ", state=" + state +
                 ", payment_state=" + payment_state +
                 '}';
+    }
+
+    public boolean readByVoiture() {
+        List<Map<String, Object>> rows = App.db.executeQuery("SELECT * FROM "+tableName()+" WHERE id_V="+getId_V()+" limit 1;");
+
+        if(rows != null){
+            if(rows.size()==1){
+                readRow(rows.get(0));
+                return true;
+            }
+        }
+        return false;
     }
 }

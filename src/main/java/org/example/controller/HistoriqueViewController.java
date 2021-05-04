@@ -1,25 +1,25 @@
 
 package org.example.controller;
 
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.Initializable;
-        import javafx.scene.control.DatePicker;
-        import javafx.scene.control.TableColumn;
-        import javafx.scene.control.TableView;
-        import javafx.scene.control.cell.PropertyValueFactory;
-        import javafx.scene.input.MouseEvent;
-        import org.example.model.Member;
-        import org.example.model.Reservation;
-        import org.example.model.Voiture;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import org.example.model.Member;
+import org.example.model.Reservation;
+import org.example.model.Voiture;
 
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Map;
-        import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class HistoriqueViewController implements Initializable {
 
@@ -51,25 +51,25 @@ public class HistoriqueViewController implements Initializable {
         loadTableviewReservationsData();
     }
 
-    public void loadReservationsData(){
+    public void loadReservationsData() {
         reservations = new ArrayList<>();
 
-        List<Map<String,Object>> all = (new Reservation()).getAll(true);
+        List<Map<String, Object>> all = (new Reservation()).getAll(true);
 
-        for (Map<String,Object> row:all) {
+        for (Map<String, Object> row : all) {
             Reservation r = new Reservation();
             r.readRow(row);
             reservations.add(r);
         }
     }
 
-    public void loadTableviewReservationsColumns(){
+    public void loadTableviewReservationsColumns() {
         TableColumn column = new TableColumn("id");
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_history.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Reservation()).toRow().entrySet()) {
 
-            if(entry.getKey() == "id_V"){
+            if (entry.getKey() == "id_V") {
 
                 column = new TableColumn("voiture");
                 column.setCellValueFactory(new PropertyValueFactory<>("voitureStr"));
@@ -78,7 +78,7 @@ public class HistoriqueViewController implements Initializable {
                 continue;
             }
 
-            if(entry.getKey() == "id_place"){
+            if (entry.getKey() == "id_place") {
 
                 column = new TableColumn("place");
                 column.setCellValueFactory(new PropertyValueFactory<>("placeStr"));
@@ -93,7 +93,7 @@ public class HistoriqueViewController implements Initializable {
         }
     }
 
-    public void loadTableviewReservationsData(){
+    public void loadTableviewReservationsData() {
         tablev_history.getColumns().get(0).setVisible(false);
         tablev_history.getColumns().get(0).setVisible(true);
         ObservableList<Reservation> reservationObservableList = FXCollections.observableList(reservations);

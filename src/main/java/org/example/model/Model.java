@@ -150,4 +150,5 @@ public abstract class Model {
         return (int)o;
 
     }
+
 }

@@ -122,6 +122,18 @@ public class Voiture extends Model {
         return all;
     }
 
+    public boolean readByMatricule() {
+        List<Map<String, Object>> rows = App.db.executeQuery("SELECT * FROM "+tableName()+" WHERE matricule="+getMatricule()+";");
+        if(rows != null){
+            if(rows.size()==1){
+                readRow(rows.get(0));
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     //Custom methods
 
 }
