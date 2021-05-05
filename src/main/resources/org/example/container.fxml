@@ -19,6 +19,26 @@
             <Button fx:id="btn_member" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Member" />
             <Button fx:id="btn_voitures" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Voitures" />
             <Button fx:id="btn_settings" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#navBtnClick" styleClass="btn-nav-style" text="Settings" />
+
+            <Button layoutX="104.0" layoutY="81.0" mnemonicParsing="false" text="Love&#10;Potion">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="src/main/resources/org/example/Icons/camera" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+
+            <Button layoutX="138.0" layoutY="226.0" mnemonicParsing="false" style="/Users/hamzaayach/Documents/java/parking-managment-maven-version/src/main/resources/org/example/Icons/settings.png" text="Love&#10;Potion">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+
          </children>
       </VBox>
    </left>
