@@ -24,7 +24,7 @@
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font></JFXTextField>
-                  <JFXTextField fx:id="pass" focusColor="#6382c1" labelFloat="true" layoutX="56.0" layoutY="267.0" prefHeight="40.0" prefWidth="217.0" promptText="Password" unFocusColor="BLACK" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="19.0">
+                  <JFXTextField fx:id="password" focusColor="#6382c1" labelFloat="true" layoutX="56.0" layoutY="267.0" prefHeight="40.0" prefWidth="217.0" promptText="Password" unFocusColor="BLACK" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="19.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font></JFXTextField>
