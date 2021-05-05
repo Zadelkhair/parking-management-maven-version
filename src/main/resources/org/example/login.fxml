@@ -44,6 +44,11 @@
                         <Image url="@images/parking.jpeg" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="104.0" fitWidth="103.0" layoutX="289.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/circle.png" />
+                     </image>
+                  </ImageView>
                </children>
                <effect>
                   <DropShadow />
