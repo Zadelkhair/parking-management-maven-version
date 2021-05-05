@@ -112,6 +112,11 @@ public class VoitureViewController implements Initializable {
         {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
         }
     }
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedVoiture = null;
+        this.clearInputs();
+    }
 
     @FXML
     void onMouseClickTableView(MouseEvent event) {
@@ -191,6 +196,16 @@ public class VoitureViewController implements Initializable {
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_voiture.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Voiture()).toRow().entrySet()) {
+
+            if(entry.getKey() == "id_m"){
+
+                column = new TableColumn("member");
+                column.setCellValueFactory(new PropertyValueFactory<>("memberStr"));
+                tablev_voiture.getColumns().add(column);
+
+                continue;
+            }
+
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_voiture.getColumns().add(column);

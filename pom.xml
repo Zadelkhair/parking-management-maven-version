@@ -36,6 +36,11 @@
             <version>0.3.12</version>
         </dependency>
         <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture-driver-ipcam</artifactId>
+            <version>0.3.12</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.jai-imageio</groupId>
             <artifactId>jai-imageio-core</artifactId>
             <version>1.3.1</version>
@@ -44,6 +49,16 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
             <version>13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>15</version>
+        </dependency>
+        <dependency>
+            <groupId>no.tornado</groupId>
+            <artifactId>tornadofx-controls</artifactId>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -63,6 +78,23 @@
                 <configuration>
                     <mainClass>org.example.App</mainClass>
                     <executable>C:/Program Files/Java/jdk-15.0.2/bin/java</executable>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Bundle-DocURL>${project.url}</Bundle-DocURL>
+                        <Import-Package>*,</Import-Package>
+                        <Export-Package>com.github.sarxos.webcam.ds.ipcam*,</Export-Package>
+                        <Private-Package>com.github.sarxos.webcam.ds.ipcam.impl,</Private-Package>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>

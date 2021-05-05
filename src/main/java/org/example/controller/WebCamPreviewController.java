@@ -1,9 +1,13 @@
 package org.example.controller;
 
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
+import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
+import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -49,31 +53,8 @@ public class WebCamPreviewController implements Initializable {
     @FXML
     ImageView imgWebCamCapturedImage;
 
-    private class WebCamInfo {
-
-        private String webCamName;
-        private int webCamIndex;
-
-        public String getWebCamName() {
-            return webCamName;
-        }
-
-        public void setWebCamName(String webCamName) {
-            this.webCamName = webCamName;
-        }
-
-        public int getWebCamIndex() {
-            return webCamIndex;
-        }
-
-        public void setWebCamIndex(int webCamIndex) {
-            this.webCamIndex = webCamIndex;
-        }
-
-        @Override
-        public String toString() {
-            return webCamName;
-        }
+    static {
+        Webcam.setDriver(new IpCamDriver());
     }
 
     private BufferedImage grabbedImage;
@@ -86,6 +67,12 @@ public class WebCamPreviewController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
+        try {
+            IpCamDeviceRegistry.register("Lignano", "http://192.168.1.102:8080/video/mjpeg", IpCamMode.PUSH);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         fpBottomPane.setDisable(true);
         ObservableList<WebCamInfo> options = FXCollections.observableArrayList();
         int webCamCounter = 0;
@@ -96,6 +83,7 @@ public class WebCamPreviewController implements Initializable {
             options.add(webCamInfo);
             webCamCounter++;
         }
+
         cbCameraOptions.setItems(options);
         cbCameraOptions.setPromptText(cameraListPromptText);
         cbCameraOptions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<WebCamInfo>() {
@@ -107,9 +95,10 @@ public class WebCamPreviewController implements Initializable {
                     initializeWebCam(arg2.getWebCamIndex());
                 }
             }
-        });
-        Platform.runLater(new Runnable() {
 
+        });
+
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 setImageViewSize();
@@ -222,4 +211,32 @@ public class WebCamPreviewController implements Initializable {
         btnStopCamera.setDisable(true);
         btnStartCamera.setDisable(true);
     }
+
+    private class WebCamInfo {
+
+        private String webCamName;
+        private int webCamIndex;
+
+        public String getWebCamName() {
+            return webCamName;
+        }
+
+        public void setWebCamName(String webCamName) {
+            this.webCamName = webCamName;
+        }
+
+        public int getWebCamIndex() {
+            return webCamIndex;
+        }
+
+        public void setWebCamIndex(int webCamIndex) {
+            this.webCamIndex = webCamIndex;
+        }
+
+        @Override
+        public String toString() {
+            return webCamName;
+        }
+    }
+
 }

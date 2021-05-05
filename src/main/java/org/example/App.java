@@ -71,6 +71,9 @@ public class App extends Application {
 
             viewController.display("login.fxml", new Stage(), true);
 
+            if(!auth.isLoggedIn())
+                return false;
+
             //i should use proxy instance
             stage.initStyle(StageStyle.UNDECORATED);
             viewController.displayMain("container.fxml", stage);

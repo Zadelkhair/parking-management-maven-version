@@ -154,7 +154,11 @@ public class ParkingViewController implements Initializable {
         loadTableviewParkingColumns();
         loadTableviewparkingData();
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedParking = null;
+        this.clearInputs();
+    }
     private void clearInputs() {
         txt_surf.clear();
         txt_nompark.clear();

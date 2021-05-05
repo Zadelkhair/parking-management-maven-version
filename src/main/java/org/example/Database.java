@@ -179,6 +179,8 @@ public class Database {
                 }
             }
 
+            System.out.println(pstmt.toString());
+
             rows = resultSetToList(pstmt.executeQuery());
 
         } catch (SQLException throwables) {

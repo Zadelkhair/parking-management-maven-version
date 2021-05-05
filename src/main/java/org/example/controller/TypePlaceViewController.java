@@ -84,7 +84,11 @@ public class TypePlaceViewController implements Initializable {
         {JOptionPane.showMessageDialog(null,"Selectionne une element que vous vouler supprimer");}
         }
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedTypePlace = null;
+        this.clearInputs();
+    }
     @FXML
     void onMouseClickTableView(MouseEvent event) {
         Object obj = tablev_typlace.getSelectionModel().getSelectedItem();

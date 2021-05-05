@@ -122,6 +122,11 @@ public class TypeMemberViewController implements Initializable {
                }
     }
     @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedTypeMemeber = null;
+        this.clearInputs();
+    }
+    @FXML
     void onMouseClickTableView(MouseEvent event){
         Object obj = tablev_tymembre.getSelectionModel().getSelectedItem();
         if (event.getClickCount() == 2 && obj != null) {

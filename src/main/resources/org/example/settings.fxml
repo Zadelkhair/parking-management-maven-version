@@ -74,7 +74,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="136.0" prefWidth="339.0" GridPane.columnIndex="2">
                <children>
-                  <Button fx:id="btn_cameras" layoutX="83.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickSettingsButton" styleClass="btn-settings" text="Cameras" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="btn_cameras" layoutX="83.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickSettingsButton" styleClass="btn-settings" text="Cameras place" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

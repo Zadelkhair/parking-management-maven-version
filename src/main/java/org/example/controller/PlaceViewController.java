@@ -86,7 +86,11 @@ public class PlaceViewController implements Initializable {
             }
         }
     }
-
+    @FXML
+    void onClickAnnuler(ActionEvent event) {
+        selectedPlace = null;
+        this.clearInputs();
+    }
     @FXML
     void onClickSupprimer(ActionEvent event) {
         int action = JOptionPane.showConfirmDialog(null, "Confirmer votre suppession?");
@@ -143,9 +147,7 @@ public class PlaceViewController implements Initializable {
 
     public void loadParkingsData(){
         parkings = new ArrayList<>();
-
         List<Map<String,Object>> all = (new CmbParking()).getAll(true);
-
         for (Map<String,Object> row:all) {
             CmbParking p = new CmbParking();
             p.readRow(row);
@@ -189,10 +191,34 @@ public class PlaceViewController implements Initializable {
         column.setCellValueFactory(new PropertyValueFactory<>("id"));
         tablev_place.getColumns().add(column);
         for (Map.Entry<String, Object> entry : (new Place()).toRow().entrySet()) {
+
+            if(entry.getKey() == "id_TP"){
+
+                column = new TableColumn("type place");
+                column.setCellValueFactory(new PropertyValueFactory<>("typePlaceStr"));
+                tablev_place.getColumns().add(column);
+
+                continue;
+            }
+
+            if(entry.getKey() == "id_parking"){
+
+                column = new TableColumn("parking");
+                column.setCellValueFactory(new PropertyValueFactory<>("parkingStr"));
+                tablev_place.getColumns().add(column);
+
+                continue;
+            }
+
             column = new TableColumn(entry.getKey());
             column.setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
             tablev_place.getColumns().add(column);
         }
+
+        column = new TableColumn("is reserved");
+        column.setCellValueFactory(new PropertyValueFactory<>("reserverd"));
+        tablev_place.getColumns().add(column);
+
     }
 
     private void clearInputs() {

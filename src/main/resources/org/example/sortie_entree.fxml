@@ -40,9 +40,14 @@
                         </Label>
                         <ComboBox id="cmb_park_en" fx:id="cmb_park_en" maxWidth="1.7976931348623157E308">
                            <VBox.margin>
-                              <Insets top="2.0" />
+                              <Insets bottom="10.0" top="2.0" />
                            </VBox.margin>
+                           <opaqueInsets>
+                              <Insets bottom="10.0" />
+                           </opaqueInsets>
                         </ComboBox>
+                        <Label prefHeight="17.0" prefWidth="313.0" text="Camera" />
+                        <ComboBox id="cmb_park_en" fx:id="cmb_camera_en" maxWidth="1.7976931348623157E308" />
                         <HBox prefHeight="25.0" prefWidth="319.0" style="-fx-alignment: center;">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onClickSupprimerE" prefHeight="25.0" prefWidth="117.0" text="Supprimer">
@@ -51,12 +56,14 @@
                                  </HBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#onClickSauvgarderE" prefHeight="25.0" prefWidth="116.0" text="Sauvgarder" />
+                              <Button fx:id="AnnulerE" mnemonicParsing="false" onAction="#onClickAnnulerE" prefHeight="25.0" prefWidth="107.0" text="Annuler" />
+                              <Button fx:id="AnnulerE1" mnemonicParsing="false" onAction="#onClickDetecterE" prefHeight="25.0" prefWidth="107.0" text="Detecter" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView id="tablev_entree" fx:id="tablev_entree" maxHeight="1.7976931348623157E308" onMouseClicked="#onMouseClickTableViewS" prefHeight="350.0" prefWidth="357.0">
+                        <TableView id="tablev_entree" fx:id="tablev_entree" maxHeight="1.7976931348623157E308" onMouseClicked="#onMouseClickTableViewE" prefHeight="350.0" prefWidth="357.0">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -78,9 +85,11 @@
                         </Label>
                         <ComboBox fx:id="cmb_park_so" maxWidth="1.7976931348623157E308">
                            <VBox.margin>
-                              <Insets top="2.0" />
+                              <Insets bottom="10.0" top="2.0" />
                            </VBox.margin>
                         </ComboBox>
+                        <Label prefHeight="17.0" prefWidth="313.0" text="Camera" />
+                        <ComboBox fx:id="cmb_camera_so" maxWidth="1.7976931348623157E308" />
                         <HBox prefHeight="25.0" prefWidth="319.0" style="-fx-alignment: center;">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onClickSupprimerS" prefHeight="25.0" prefWidth="117.0" text="Supprimer">
@@ -89,6 +98,8 @@
                                  </HBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#onClickSauvgarderS" prefHeight="25.0" prefWidth="116.0" text="Sauvgarder" />
+                              <Button fx:id="AnnulerS" mnemonicParsing="false" onAction="#onClickAnnulerS" prefHeight="25.0" prefWidth="108.0" text="Annuler" />
+                              <Button mnemonicParsing="false" onAction="#onClickDetecterS" prefHeight="25.0" prefWidth="116.0" text="Detecter" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
