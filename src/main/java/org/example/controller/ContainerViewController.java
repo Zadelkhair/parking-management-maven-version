@@ -43,6 +43,7 @@ public class ContainerViewController extends MainView implements Initializable {
         return this.btnHome ;
     }
 
+    /*
     public void start(Stage stage) {
         //Creating a graphic (image)
         Image img = new Image("UIControls/logo.png");
@@ -64,7 +65,7 @@ public class ContainerViewController extends MainView implements Initializable {
         stage.setTitle("Button Graphics");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
     public void navBtnClick(MouseEvent mouseEvent) {
 
