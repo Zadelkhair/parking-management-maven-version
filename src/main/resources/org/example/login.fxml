@@ -1,60 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="755.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginViewController">
+<AnchorPane prefHeight="400.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginViewController">
    <children>
-      <AnchorPane layoutX="23.0" layoutY="34.0" prefHeight="519.0" prefWidth="606.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="47.0">
-         <children>
-            <AnchorPane layoutX="327.0" layoutY="47.0" maxWidth="347.0" prefHeight="502.0" prefWidth="347.0" style="-fx-background-color: white; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="327.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="47.0">
-               <children>
-                  <Label layoutX="129.0" layoutY="89.0" prefHeight="25.0" prefWidth="90.0" text="Login" textFill="#000000c4" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="89.0">
-                     <font>
-                        <Font name="Futura Medium" size="47.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="user" focusColor="#6382c1" labelFloat="true" layoutX="56.0" layoutY="178.0" prefHeight="40.0" prefWidth="217.0" promptText="Usename" unFocusColor="BLACK" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="19.0">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font></JFXTextField>
-                  <JFXTextField fx:id="pass" focusColor="#6382c1" labelFloat="true" layoutX="56.0" layoutY="267.0" prefHeight="40.0" prefWidth="217.0" promptText="Password" unFocusColor="BLACK" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="19.0">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font></JFXTextField>
-                  <JFXButton layoutX="123.0" layoutY="373.0" onMouseClicked="#login" prefHeight="44.0" prefWidth="131.0" style="-fx-background-color: linear-gradient(to right top, #6382C1,#5AA0CA);; -fx-border-radius: 2em;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="85.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="373.0">
-                     <font>
-                        <Font name="System Bold" size="29.0" />
-                     </font></JFXButton>
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </AnchorPane>
-            <AnchorPane fx:id="root1" layoutX="14.0" layoutY="33.0" prefHeight="440.0" prefWidth="340.0" style="-fx-background-radius: 1em;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="33.0">
-               <children>
-                  <ImageView fitHeight="540.0" fitWidth="340.0">
-                     <image>
-                        <Image url="@images/parking.jpeg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="104.0" fitWidth="103.0" layoutX="289.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/circle.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
+      <ImageView fitHeight="414.0" fitWidth="270.0" layoutX="-4.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/parking.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="222.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/circle.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="344.0" layoutY="67.0" prefHeight="62.0" prefWidth="127.0" text="Login" textFill="#000000c4">
+         <font>
+            <Font name="Futura Medium" size="47.0" />
+         </font>
+      </Label>
+      <Button layoutX="333.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="49.0" prefWidth="129.0" style="-fx-background-color: linear-gradient(to right top, #6382C1,#5AA0CA);; -fx-border-radius: 2em;" text="Login" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TextField fx:id="user" layoutX="315.0" layoutY="186.0" prefHeight="27.0" prefWidth="172.0" promptText="Username" style="-fx-background-color: #a9a9a9 , white , white#a9a9a9 , white , white; -fx-border-color: white;" styleClass="text-field" />
+      <TextField fx:id="password" layoutX="315.0" layoutY="231.0" prefHeight="27.0" prefWidth="172.0" promptText="Password" style="-fx-background-color: #a9a9a9 , white , white#a9a9a9 , white , white; -fx-border-color: white;" styleClass="text-field" />
    </children>
 </AnchorPane>
