@@ -68,7 +68,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>15</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -95,6 +95,24 @@
                         <Export-Package>com.github.sarxos.webcam.ds.ipcam*,</Export-Package>
                         <Private-Package>com.github.sarxos.webcam.ds.ipcam.impl,</Private-Package>
                     </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.10</version>
+                <configuration>
+                    <imageName>example</imageName>
+                    <baseImage>java</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!-- copy the service's jar file from target into the root directory of the image -->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>

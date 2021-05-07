@@ -29,7 +29,6 @@ public abstract class MainView {
     public void navigateTo(String viewUrl, ButtonBase btnToSelect){
         navigateTo(viewUrl,btnToSelect,null);
 
-
     }
 
     public void navigateTo(String viewUrl, ButtonBase btnToSelect, Map<String,Object> data){
