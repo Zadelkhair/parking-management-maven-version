@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <ScrollPane fitToWidth="true" prefWidth="794.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReservationStep1ViewController">
    <content>
       <AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefWidth="347.0">
@@ -44,13 +45,13 @@
                         <VBox prefHeight="102.0" prefWidth="158.0">
                            <children>
                               <Label text="Nom" />
-                              <TextField id="txt_nom" fx:id="txt_nom">
+                              <TextField id="txt_nom" fx:id="txt_nom" editable="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label text="¨Prenom" />
-                              <TextField id="txt_prenom" fx:id="txt_prenom">
+                              <TextField id="txt_prenom" fx:id="txt_prenom" editable="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -63,13 +64,13 @@
                         <VBox prefHeight="102.0" prefWidth="184.0">
                            <children>
                               <Label text="Debut d'abonnement" />
-                              <DatePicker id="date_d" fx:id="date_d" prefHeight="25.0" prefWidth="191.0">
+                              <DatePicker id="date_d" fx:id="date_d" editable="false" prefHeight="25.0" prefWidth="191.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </DatePicker>
                               <Label text="Fin dabonnement" />
-                              <DatePicker id="date_f" fx:id="date_f" prefHeight="25.0" prefWidth="191.0" />
+                              <DatePicker id="date_f" fx:id="date_f" editable="false" prefHeight="25.0" prefWidth="191.0" />
                            </children>
                            <HBox.margin>
                               <Insets right="20.0" />
@@ -78,11 +79,7 @@
                         <VBox prefHeight="102.0" prefWidth="184.0">
                            <children>
                               <Label text="Type menmber" />
-                              <ComboBox id="cmb_type_members" fx:id="cmb_type_members" prefHeight="25.0" prefWidth="184.0">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </ComboBox>
+                              <TextField id="txt_nom" fx:id="txt_typem" editable="false" />
                            </children>
                         </VBox>
                      </children>
@@ -96,7 +93,7 @@
                      </VBox.margin>
                   </Label>
                   <Label text="Voiture" />
-                  <ComboBox fx:id="cmb_voiture" maxWidth="1.7976931348623157E308">
+                  <ComboBox fx:id="cmb_voiture" maxWidth="1.7976931348623157E308" onAction="#onActionVoiture">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -106,7 +103,7 @@
                         <VBox prefHeight="102.0" prefWidth="158.0">
                            <children>
                               <Label text="Matricule" />
-                              <TextField id="txt_nom" fx:id="txt_matricule">
+                              <TextField id="txt_nom" fx:id="txt_matricule" editable="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -119,7 +116,7 @@
                         <VBox prefHeight="102.0" prefWidth="158.0">
                            <children>
                               <Label text="Couleur" />
-                              <TextField id="txt_nom" fx:id="txt_couleur">
+                              <TextField id="txt_nom" fx:id="txt_couleur" editable="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -132,7 +129,7 @@
                         <VBox prefHeight="102.0" prefWidth="158.0">
                            <children>
                               <Label text="La marque" />
-                              <TextField id="txt_nom" fx:id="txt_marque">
+                              <TextField id="txt_nom" fx:id="txt_marque" editable="false">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>

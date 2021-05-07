@@ -1,10 +1,12 @@
 package org.example.controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,17 +15,17 @@ import org.example.App;
 import org.example.model.Place;
 import org.example.model.Reservation;
 
-import javax.swing.text.Position;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class ReservationStep2ViewController implements IReceiveData, Initializable {
+
+    private List<Reservation> reservations;
+
+    @FXML
+    private CheckBox chk_multireservation;
 
     @FXML
     private Label lbl_place;
@@ -47,6 +49,20 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
 
     private Reservation reservation;
 
+    private boolean multireservation = false;
+
+    public boolean isMultireservation() {
+        multireservation = chk_multireservation.isSelected();
+        return multireservation;
+    }
+
+    @FXML
+    void onActionChk(ActionEvent event) {
+        reservation=null;
+        reservations.clear();
+        PositionCardViewController.deselectAll();
+    }
+
     @Override
     public void setData(Map<String, Object> data) {
         if (data.containsKey("voiture_id")) {
@@ -68,7 +84,7 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
 
                 PositionCardViewController positionCardViewController = (PositionCardViewController) fxmlLoader.getController();
                 positionCardViewController.setNum(p.getId());
-                positionCardViewController.setDisponible(p.isReserverd());
+                positionCardViewController.setReserved(p.isReserverd());
 
                 root.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
@@ -79,6 +95,10 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                         PositionCardViewController positionCardViewController = (PositionCardViewController) place_fxmlLoader.getController();
 
                         if (positionCardViewController != null) {
+
+                            if (positionCardViewController.isReserved())
+                                return;
+
                             reservation = new Reservation();
                             reservation.setDate_debut(LocalDateTime.now());
                             reservation.setId_V(voiture_id);
@@ -86,8 +106,43 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
                             reservation.setPayment_state(0);
                             reservation.setState(0);
 
-                            lbl_selected_place.setText("Selected place ("+positionCardViewController.getNum()+")");
+                            if (isMultireservation()) {
+                                if (reservations == null)
+                                    reservations = new ArrayList<>();
 
+                                boolean reservation_exisit = false;
+                                for (Reservation r : reservations) {
+                                    System.out.println("Remove " + r.getId_place());
+                                    if (r.getId_place() == reservation.getId_place()) {
+                                        System.out.println("Remove " + r.getId_place());
+                                        reservations.remove(r);
+                                        positionCardViewController.selectANDdeselect(isMultireservation());
+                                        reservation_exisit = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!reservation_exisit) {
+                                    reservations.add(reservation);
+                                }
+
+                                String selected_places = "";
+                                for (Reservation r : reservations) {
+                                    selected_places += r.getId_place() + " , ";
+                                }
+                                if (selected_places.length() >= 3)
+                                    selected_places = selected_places.substring(0, selected_places.length() - 3);
+                                ;
+                                lbl_selected_place.setText("Select a places [" + reservations.size() + "] : " + selected_places);
+
+                                if (reservation_exisit)
+                                    return;
+                            } else {
+                                reservations = new ArrayList<>();
+                                lbl_selected_place.setText("Select a place : " + reservation.getId_place() + "");
+                            }
+
+                            positionCardViewController.selectANDdeselect(isMultireservation());
 
                         }
                     }
@@ -101,7 +156,7 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
 
     }
 
-    public void loadPlaces(){
+    public void loadPlaces() {
         places = new ArrayList<>();
 
         List<Map<String, Object>> all = (new Place()).getAll(true);
@@ -117,8 +172,14 @@ public class ReservationStep2ViewController implements IReceiveData, Initializab
         if (reservation == null)
             return;
 
-        System.out.println(reservation.toString());
-        reservation.create();
+        if (isMultireservation()) {
+            for (Reservation r : reservations) {
+                r.create();
+            }
+        } else {
+            reservation.create();
+        }
+
         App.viewController.navigateTo("historique.fxml");
 
     }

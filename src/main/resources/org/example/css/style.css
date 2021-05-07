@@ -7,9 +7,9 @@
 .btn-nav-style{
     -fx-background-color: trasparent;
     -fx-text-fill: white;
-    -fx-padding: 20;
-    -fx-font-size: 20;
-    -fx-border-width: 0 0 0 7;
+    -fx-padding: 5;
+    -fx-font-size: 10;
+    -fx-border-width: 0 7 0 0;
     -fx-border-color: #24292e;
 }
 
@@ -17,6 +17,8 @@
     -fx-border-color: white;
     -fx-cursor: hand;
 }
+
+
 
 .btn-close{
 
@@ -35,7 +37,35 @@
 }
 
 .btn-settings{
--fx-background-color:  #24292e; -fx-text-fill: white; -fx-font-size: 25px;
+ -fx-text-fill: white; -fx-font-size: 25px;
+-fx-background-radius:15;
+}
+.btn-1{
+-fx-background-color: linear-gradient(to right top, #6382C1,#5AA0CA);
+}
+.btn-2{
+-fx-background-color: linear-gradient(to right top, #01C7C6,#04A7A6);
+}
+.btn-3{
+-fx-background-color: linear-gradient(to right top, #F77C77,#FF4C45);
+}
+.btn-4{
+-fx-background-color: linear-gradient(to right top, #B40056,#F70076);
+}
+.btn-5{
+-fx-background-color: linear-gradient(to right top, #FFA238,#FFB969);
+}
+.btn-6{
+-fx-background-color: linear-gradient(to right top, #A361DC,#5AA0CA);
+}
+.btn-7{
+-fx-background-color: linear-gradient(to right top, #6AC583,#5AA0CA);
+}
+.btn-8{
+-fx-background-color: linear-gradient(to right top, #002396,#5AA0CA);
+}
+.btn-9{
+-fx-background-color: linear-gradient(to right top, #6382C1,#5AA0CA);
 }
 
 .btn-settings:hover{
@@ -61,4 +91,8 @@
 
 .place-disponible{
 -fx-background-color: red; -fx-text-fill: white;
+}
+
+.place-slected{
+-fx-background-color: blue; -fx-text-fill: white;
 }

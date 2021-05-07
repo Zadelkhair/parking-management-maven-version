@@ -43,29 +43,6 @@ public class ContainerViewController extends MainView implements Initializable {
         return this.btnHome ;
     }
 
-    public void start(Stage stage) {
-        //Creating a graphic (image)
-        Image img = new Image("UIControls/logo.png");
-        ImageView view = new ImageView(img);
-        view.setFitHeight(80);
-        view.setPreserveRatio(true);
-        //Creating a Button
-        Button button = new Button();
-        //Setting the location of the button
-        button.setTranslateX(200);
-        button.setTranslateY(25);
-        //Setting the size of the button
-        button.setPrefSize(80, 80);
-        //Setting a graphic to the button
-        button.setGraphic(view);
-        //Setting the stage
-        Group root = new Group(button);
-        Scene scene = new Scene(root, 595, 170, Color.BEIGE);
-        stage.setTitle("Button Graphics");
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void navBtnClick(MouseEvent mouseEvent) {
 
         Object node = mouseEvent.getSource();
@@ -91,10 +68,10 @@ public class ContainerViewController extends MainView implements Initializable {
             case "Parking lot":
                 App.viewController.navigateTo("historique.fxml",btn);
                 return;
-            case "Member":
+            case "Membre":
                 App.viewController.navigateTo("members.fxml",btn);
                 return;
-            case "Voitures":
+            case "Voiture":
                 App.viewController.navigateTo("voiture.fxml",btn);
                 return;
             case "Settings":

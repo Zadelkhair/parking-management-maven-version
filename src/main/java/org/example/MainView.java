@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.example.controller.IReceiveData;
@@ -37,6 +38,15 @@ public abstract class MainView {
 
             if(btnToSelect!=null){
                 for (Node node : getNavVbox().getChildren()) {
+
+                    System.out.println(node instanceof ButtonBase);
+
+                    if(!(node instanceof AnchorPane))
+                        continue;
+
+                    AnchorPane anchorPane = (AnchorPane)node;
+
+                    node = anchorPane.getChildren().get(0);
 
                     if(!(node instanceof ButtonBase))
                         continue;

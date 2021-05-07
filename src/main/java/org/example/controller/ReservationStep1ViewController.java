@@ -40,7 +40,7 @@ public class ReservationStep1ViewController implements Initializable {
     private DatePicker date_f;
 
     @FXML
-    private ComboBox<CmbMember> cmb_type_members;
+    private TextField txt_typem;
 
     @FXML
     private ComboBox<CmbVoiture> cmb_voiture;
@@ -95,7 +95,7 @@ public class ReservationStep1ViewController implements Initializable {
         txt_marque.clear();
         date_d.getEditor().clear();
         date_f.getEditor().clear();
-        cmb_type_members.getSelectionModel().clearSelection();
+        txt_typem.clear();
         cmb_voiture.getSelectionModel().clearSelection();
 
 
@@ -108,8 +108,34 @@ public class ReservationStep1ViewController implements Initializable {
     @FXML
     void onActionMember(ActionEvent event) {
         CmbMember cmbMember = cmb_member.getSelectionModel().getSelectedItem();
+
+        if(cmbMember==null)
+            return;
+
         loadMembreVoitursData(cmbMember.getId());
         loadComboboxVoitureData();
+
+        clearInputs();
+
+        txt_nom.setText(cmbMember.getName());
+        txt_prenom.setText(cmbMember.getPrenom());
+        date_d.setValue(cmbMember.getDebut_abonnement().toLocalDate());
+        date_f.setValue(cmbMember.getFin_abonnement().toLocalDate());
+        txt_typem.setText(cmbMember.getMemberTypeStr());
+    }
+
+    @FXML
+    void onActionVoiture(ActionEvent event) {
+        CmbVoiture cmbVoiture = cmb_voiture.getSelectionModel().getSelectedItem();
+
+        if(cmbVoiture==null)
+            return;
+
+//        clearInputs();
+
+        txt_matricule.setText(cmbVoiture.getMatricule());
+        txt_couleur.setText(cmbVoiture.getColour());
+        txt_marque.setText(cmbVoiture.getLa_marque());
     }
 
     private void loadComboboxVoitureData() {

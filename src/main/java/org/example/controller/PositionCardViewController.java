@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PositionCardViewController implements Initializable {
@@ -13,22 +15,30 @@ public class PositionCardViewController implements Initializable {
     @FXML
     private Label lbl_num_place;
 
-    private boolean disponible;
+    private boolean reserved = true;
+    private boolean selected = false;
+
+    private static List<PositionCardViewController> selected_positions;
+    private boolean multiselect;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.setDisponible(false);
+        this.setReserved(false);
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public boolean isMultiselect() {
+        return multiselect;
     }
 
-    public void setDisponible(boolean disponible) {
+    public boolean isReserved() {
+        return reserved;
+    }
 
-        lbl_num_place.setDisable(disponible);
+    public void setReserved(boolean reserved) {
 
-        if(disponible){
+        lbl_num_place.setDisable(reserved);
+
+        if(reserved){
             if (this.lbl_num_place.getStyleClass().contains("place-reserver")) {
                 this.lbl_num_place.getStyleClass().remove("place-reserver");
             }
@@ -42,12 +52,42 @@ public class PositionCardViewController implements Initializable {
         }
 
 
-        this.disponible = disponible;
+        this.reserved = reserved;
     }
 
-    public void select(boolean select) {
+    public static void deselectAll(){
+        for (PositionCardViewController pc:selected_positions) {
+            if(pc.isSelected())
+                pc.selectANDdeselect();
+        }
 
-        if(select){
+        selected_positions.clear();
+    }
+
+    public void selectANDdeselect(){
+        this.selectANDdeselect(false);
+    }
+
+    public void selectANDdeselect(boolean multiselect) {
+
+        this.multiselect = multiselect;
+
+        if(!multiselect){
+            if(!this.isSelected()){
+                if(selected_positions==null)
+                    selected_positions=new ArrayList<>();
+
+                for (PositionCardViewController pc:selected_positions) {
+                    if(pc.isSelected())
+                        pc.selectANDdeselect();
+                }
+
+                selected_positions.add(this);
+            }
+        }
+
+
+        if(!selected){
             if (!this.lbl_num_place.getStyleClass().contains("place-slected")) {
                 this.lbl_num_place.getStyleClass().add("place-slected");
             }
@@ -58,7 +98,11 @@ public class PositionCardViewController implements Initializable {
             }
         }
 
-        this.disponible = disponible;
+        this.selected = !selected;
+    }
+
+    private boolean isSelected() {
+        return this.selected;
     }
 
 
