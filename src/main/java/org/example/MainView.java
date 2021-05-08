@@ -12,6 +12,13 @@ import org.example.controller.IReceiveData;
 import java.io.IOException;
 import java.util.Map;
 
+/*
+* This class has the fuctionalities that make a page 
+* Containing other pages , every page that would use this 
+* Class , should have : Border panel , Vbox
+* Border panel will containe our pages
+* Vbox will containe the navigation box
+*/
 public abstract class MainView {
 
     public abstract VBox getNavVbox();
@@ -20,6 +27,7 @@ public abstract class MainView {
 
     public abstract ButtonBase getBtnHome();
 
+    //Navigation function 
     public void navigateTo(String viewUrl){
 
         navigateTo(viewUrl,null,null);
