@@ -21,14 +21,28 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * JavaFX App
  */
 public class App extends Application {
-
+    
+    //database object helper, based on JDBC 
+    //this class allow us to interract with the database
     public static Database db;
+    
+    //configuration object
     public static Config config;
+    
+    //Authentificated user , his name , password , roles ...
+    //functions like logout , login ...
     public static Auth auth;
+    
+    //The middleware for security reason's
     public static Middleware middleware;
+    
+    //Class that controlle all navigation's in the application
     public static ViewController viewController;
+    
+    //Map key value , we use it to make interraction between all controller's possible
     public static Map<String, Object> passed_data;
 
+    // The entry point of our application
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -39,11 +53,13 @@ public class App extends Application {
 //        stage.show();
 
         //App.go(stage);
-
+        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Do you want to restar the application ?");
         AtomicBoolean b = new AtomicBoolean(false);
         do {
+            
+            //Class the go function , to start the application
             b.set(App.go(stage));
 
             if (!b.get()) {
@@ -56,16 +72,20 @@ public class App extends Application {
                 });
             }
         } while (!b.get());
+        
     }
-
+    
+    //Start the application if the database is well configuered and the user is authentificated 
     private static boolean go(Stage stage) {
         go();
-
+        
+        //check if the database is confegured
         if (db.checkDatabaseConnection() != 1) {
             (new ViewController()).display("databaseconfig.fxml", new Stage(), true);
             return false;
         }
 
+        //check if user is authetificated
         if (!auth.isLoggedIn()) {
             viewController = new ViewController();
 
@@ -74,14 +94,16 @@ public class App extends Application {
             if(!auth.isLoggedIn())
                 return false;
 
-            //i should use proxy instance
             stage.initStyle(StageStyle.UNDECORATED);
+            
+            //call the displayMain to display the main page (The container will containe all pages of our application) 
             viewController.displayMain("container.fxml", stage);
         }
 
         return true;
     }
 
+    //Check the database configuration , will return true if it's well configured
     public static void go() {
         config = Config.getConfig();
 
